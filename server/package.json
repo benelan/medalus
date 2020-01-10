@@ -1,0 +1,18 @@
+{
+  "name": "medalus-server",
+  "version": "1.0.0",
+  "description": "the server for medalus",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "medalus"
+  ],
+  "author": "TEAM MEDALUS",
+  "license": "ISC",
+  "dependencies": {
+    "@mapbox/geojson-merge": "^1.1.1",
+    "express": "^4.17.1"
+  }
+}
