@@ -1,7 +1,7 @@
 const express = require('express')
     , app = express()
     , path = require('path')
-    , port = process.env.PORT || 3001;
+    , port = process.env.PORT || 8080;
 
 
 app.use(require('./controllers'))
