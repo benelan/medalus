@@ -6,6 +6,12 @@ import MainHeader from './components/MainHeader';
 
 class App extends React.Component {
 
+  state = {collapsed: true};
+
+  toggleNavbar = () => {
+    this.setState({collapsed: !this.state.collapsed});
+  }
+
   componentWillMount() {
     loadCss()
     loadMap()
@@ -19,8 +25,8 @@ class App extends React.Component {
 
     return (
       <div>
-        <MainHeader />
-        <div id="viewDiv" style={mD}></div>
+        <MainHeader onClick={this.toggleNavbar} collapsed={this.state.collapsed}/>
+        <div id="viewDiv" style={mD}></div> 
       </div>
       
     );

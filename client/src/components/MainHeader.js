@@ -1,12 +1,12 @@
 import React from 'react';
-import Menu from './Menu';
+import NavBar from './NavBar';
 
-const MainHeader = () => {
+const MainHeader = (props) => {
     return (
         <div className="pusher">
             <div className="ui inverted segment">
                 <div className="ui inverted vertical masthead center aligned segment">
-                    <Menu />
+                <NavBar onClick={props.onClick} collapsed={props.collapsed}/>
                     <br />
                     <br />
                     <div className="ui text container" style={{padding: '20px'}}>
