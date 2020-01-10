@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import { loadCss } from 'esri-loader'
 import { loadMap } from './esriMap/'
+import MainHeader from './components/MainHeader';
 
 class App extends React.Component {
 
@@ -17,7 +18,11 @@ class App extends React.Component {
     }
 
     return (
-      <div id="viewDiv" style={mD}></div>
+      <div>
+        <MainHeader />
+        <div id="viewDiv" style={mD}></div>
+      </div>
+      
     );
   }
 }
