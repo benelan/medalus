@@ -2,8 +2,15 @@ import React from 'react';
 import './App.css';
 import { loadCss } from 'esri-loader'
 import { loadMap } from './esriMap/'
+import MainHeader from './components/MainHeader';
 
 class App extends React.Component {
+
+  state = {collapsed: true};
+
+  toggleNavbar = () => {
+    this.setState({collapsed: !this.state.collapsed});
+  }
 
   componentWillMount() {
     loadCss()
@@ -17,7 +24,12 @@ class App extends React.Component {
     }
 
     return (
-      <div id="viewDiv" style={mD}></div>
+      <div>
+        <MainHeader onClick={this.toggleNavbar} collapsed={this.state.collapsed}/>
+        <div id="viewDiv" style={mD}></div>
+        {/*TODO Formik form */} 
+      </div>
+      
     );
   }
 }
