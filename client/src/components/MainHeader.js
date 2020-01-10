@@ -8,7 +8,6 @@ const MainHeader = (props) => {
                 <div className="ui inverted vertical masthead center aligned segment">
                 <NavBar onClick={props.onClick} collapsed={props.collapsed}/>
                     <br />
-                    <br />
                     <div className="ui text container" style={{padding: '20px'}}>
                         <h1 className="ui inverted header">
                             Medalus
