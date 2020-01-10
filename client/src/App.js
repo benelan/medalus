@@ -26,7 +26,8 @@ class App extends React.Component {
     return (
       <div>
         <MainHeader onClick={this.toggleNavbar} collapsed={this.state.collapsed}/>
-        <div id="viewDiv" style={mD}></div> 
+        <div id="viewDiv" style={mD}></div>
+        {/*TODO Formik form */} 
       </div>
       
     );
