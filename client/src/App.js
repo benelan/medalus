@@ -28,7 +28,20 @@ class App extends React.Component {
       <div>
         <MainHeader onClick={this.toggleNavbar} collapsed={this.state.collapsed}/>
         <div id="viewDiv" style={mD}></div>
-        <UserInputForm />
+        <div className="ui equal width center aligned grid">
+          <div className="row" style={{backgroundColor: '#869D05', color: '#FFFFFF'}}>
+            <div className="column">Divider</div>
+              <div className="column">
+              <div className="ui segment" style={{backgroundColor: '#D0CFD4'}}>
+                <UserInputForm />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="ui tow column centered grid">
+        </div>
+        
+        
       </div>
       
     );
