@@ -28,7 +28,9 @@ class App extends React.Component {
     return (
       <React.Fragment>
         <MainHeader onClick={this.toggleNavbar} collapsed={this.state.collapsed}/>
-        <div id="viewDiv" style={mD}></div>
+        <div id="viewDiv" style={mD}>
+        <button id="feature-count" class="esri-widget">Number of Features</button>
+        </div>
         <UserInputForm />
         <About />
         </React.Fragment>
