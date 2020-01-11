@@ -141,9 +141,9 @@ class EsriMap extends Component {
 
         view.ui.add(filterBtn, "top-right");
         view.ui.add(txtBox, "top-right");
-        view.ui.add(featureCount, "top-right");
-        view.ui.add(selectCountyTitle, "top-right");
-        view.ui.add(county, "top-right");
+        //view.ui.add(featureCount, "top-right");
+        //view.ui.add(selectCountyTitle, "top-right");
+        //view.ui.add(county, "top-right");
 
         filterBtn.onclick = function(){
           geojsonLayerView.filter = {
@@ -225,7 +225,7 @@ class EsriMap extends Component {
           <div id="viewDiv" style={mD}>
             <button id="filterBtn" className="esri-widget" style={filterVisibility}>Filter</button>
             <input type="text" id="txtBox" className="esri-widget" style={{visibility: filterVisibility.visibility, backgroundColor: '#FFFFFF'}} value={definitionExpression} readOnly></input>
-            <button id="feature-count" className="esri-widget">
+            {/* <button id="feature-count" className="esri-widget">
               Number of Features
             </button>
             <span id="select-county-title">Select a county:</span>
@@ -237,7 +237,7 @@ class EsriMap extends Component {
               <option value="Santa Clara">Santa Clara</option>
               <option value="San Diego">San Diego</option>
               
-            </select>
+            </select> */}
             <div id="timeSliderDiv"></div>
           </div>
           

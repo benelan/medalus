@@ -41,30 +41,22 @@ const UserInputForm = inject("DataStore")(observer(
                             initialValues={{
                                 where: this.props.DataStore.where,
                                 extent: this.props.DataStore.inputGeometry,
-                                returnGeometry: this.props.DataStore.returnGeometry,
-                                outFields: this.props.DataStore.outFields
+                                county: this.props.DataStore.county
                             }}
                             validationSchema={Yup.object({
-                                where: Yup.string()
-                                    .required('Required')
+                                county: Yup.string()
+                                    .required('Please select a county')
                             })}
                             onSubmit={(values, { setSubmitting }) => {
                                 setTimeout(() => {
-                                    //this.queryLayer(values); //geojson url hardcoded here
-                                    console.log(values);
                                     this.props.DataStore.setWhere(values.where);
-                                    //setWhere("")
+                                    this.props.DataStore.setCount(values.county);
                                     console.log(JSON.stringify(values, null, 2));
                                     setSubmitting(false);
                                 }, 400);
                             }}
                         >
                             <Form>
-                                <label htmlFor="where">Where</label>
-                                <Field name="where" type="text" />
-                                <ErrorMessage name="where" component={redErrorMessage} />
-                                <label htmlFor="extent">Input Geometry</label>
-                                <Field name="extent" as="textarea" className="form-input" />
                                 <label htmlFor="county">County</label>
                                 <Field name="county" as="select">
                                     <option value="">Select a county</option>
@@ -73,10 +65,11 @@ const UserInputForm = inject("DataStore")(observer(
                                     <option value="San Francisco">San Francisco</option>
                                     <option value="Santa Clara">Santa Clara</option>
                                 </Field>
-                                <label htmlFor="outFields">Out Fields</label>
-                                <Field name="outFields" type="text" />
-                                <label htmlFor="returnGeometry">returnGeometry</label>
-                                <Field name="returnGeometry" type="text" />
+                                <label htmlFor="where">Where</label>
+                                <Field name="where" type="text" />
+                                <ErrorMessage name="where" component={redErrorMessage} />
+                                <label htmlFor="extent">Input Geometry</label>
+                                <Field name="extent" as="textarea" className="form-input" />
                                 <br />
                                 <button type="submit">Submit</button>
                             </Form>
