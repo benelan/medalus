@@ -41,8 +41,7 @@ const UserInputForm = inject("DataStore")(observer(
                             initialValues={{
                                 county: this.props.DataStore.county,
                                 where: this.props.DataStore.where,
-                                extent: this.props.DataStore.inputGeometry
-                                
+                                extent: this.props.DataStore.inputGeometry     
                             }}
                             validationSchema={Yup.object({
                                 county: Yup.string()
@@ -52,6 +51,7 @@ const UserInputForm = inject("DataStore")(observer(
                                 setTimeout(() => {
                                     this.props.DataStore.setWhere(values.where);
                                     this.props.DataStore.setCounty(values.county);
+                                    this.props.DataStore.setInputGeometry(values.extent)
                                     console.log(JSON.stringify(values, null, 2));
                                     setSubmitting(false);
                                 }, 400);
@@ -70,7 +70,7 @@ const UserInputForm = inject("DataStore")(observer(
                                 <label htmlFor="where">Where</label>
                                 <Field name="where" type="text" />
                                 <label htmlFor="extent">Input Geometry</label>
-                                <Field name="extent" as="textarea" className="form-input" />
+                                <Field name="extent" as="textarea" className="form-input"></Field>
                                 <br />
                                 <button type="submit">Submit</button>
                             </Form>
