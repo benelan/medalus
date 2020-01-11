@@ -17,7 +17,9 @@ class App extends React.Component {
     }
 
     return (
-      <div id="viewDiv" style={mD}></div>
+      <div id="viewDiv" style={mD}>
+        <button id="feature-count" class="esri-widget">Number of Features</button>
+      </div>
     );
   }
 }
