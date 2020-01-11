@@ -1,7 +1,7 @@
 import { action, observable, decorate } from "mobx"
 
 class DataStore {
-    county = 'Almeda';
+    county = '';
     where = '';
     inputGeometry = '';
     outFields = '';
