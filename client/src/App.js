@@ -8,7 +8,7 @@ const App = () => {
     return (
       <React.Fragment>
         <NavBar />
-        <EsriMap />
+        {/*<EsriMap />*/}
         <UserInputForm />
         <About />
       </React.Fragment>
