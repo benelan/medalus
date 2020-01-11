@@ -43,10 +43,6 @@ class App extends React.Component {
             <option value="San Diego">San Diego</option>
           </select>
         </div>
-
-        <NavBar onClick={this.toggleNavbar} collapsed={this.state.collapsed} />
-        <div id="viewDiv" style={mD}></div>
-
         <UserInputForm />
         <About />
       </React.Fragment>
