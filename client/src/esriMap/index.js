@@ -81,13 +81,57 @@ export function loadMap() {
         });
       });
 
-//symbology for rendering unique values based on Grid Codes
+      //symbology for rendering unique values based on Grid Codes
 
+      //symbol for Grid Code 1
+      const codeOne = {
+        type: "simple-fill", //autocast as new SimpleFillSymbol()
+        color: [255, 255, 0, 1], //yellow
+        style: "solid"
+      };
 
+      const codeTwo = {
+        type: "simple-fill", //autocast as new SimpleFillSymbol()
+        color: [0, 255, 0, 1], //green
+        style: "solid"
+      };
 
+      const codeThree = {
+        type: "simple-fill", //autocast as new SimpleFillSymbol()
+        color: [255, 0, 0, 1], //red
+        style: "solid"
+      };
 
+      const codeFour = {
+        type: "simple-fill", //autocast as new SimpleFillSymbol()
+        color: [0, 0, 255, 1], //blue
+        style: "solid"
+      };
 
+      var renderer = {
+        type: "unique-value", //autocasts as new UniqueValueRenderer
+        field: "gridcode",
+        uniqueValueInfos: [
+          {
+            value: "1", // grid code value "4"
+            symbol: codeOne // will be assigned codeOne
+          },
+          {
+            value: "2", // grid code value "4"
+            symbol: codeTwo // will be assigned codeTwo
+          },
+          {
+            value: "3", // grid code value "4"
+            symbol: codeThree // will be assigned codeThree
+          },
+          {
+            value: "4", // grid code value "4"
+            symbol: codeFour // will be assigned codeFour
+          }
+        ]
+      };
 
+      
     }) //end of module
     .catch(err => {
       // handle any errors
