@@ -21,6 +21,7 @@ class EsriMap extends Component {
       "esri/widgets/TimeSlider"
     ])
       .then(([Map, MapView, GeoJSONLayer, TimeSlider]) => {
+        let geojsonLayerView;
         // // then we load a web map from an id
         // var webmap = new WebMap({
         //   portalItem: { // autocasts as new PortalItem()
@@ -132,7 +133,9 @@ class EsriMap extends Component {
         var featureCount = document.getElementById("feature-count");
         var county = document.getElementById("county");
         var selectCountyTitle = document.getElementById("select-county-title");
+        const filterBtn = document.getElementById("filterBtn");
 
+        view.ui.add(filterBtn, "top-right");
         view.ui.add(featureCount, "top-right");
         view.ui.add(selectCountyTitle, "top-right");
         view.ui.add(county, "top-right");
@@ -172,6 +175,7 @@ class EsriMap extends Component {
         // handle any errors
         console.error(err);
       });
+
   }
 
   render() {
@@ -183,6 +187,7 @@ class EsriMap extends Component {
       <Row id="map">
         <Col md={12}>
           <div id="viewDiv" style={mD}>
+            <button id="filterBtn">Filter</button>
             <button id="feature-count" className="esri-widget">
               Number of Features
             </button>

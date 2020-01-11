@@ -35,7 +35,10 @@ class UserInputForm extends React.Component {
                         })}
                         onSubmit={(values, {setSubmitting }) => {
                             setTimeout(()=> {
-                                queryLayer(values); //geojson url hardcoded here
+                                //queryLayer(values); //geojson url hardcoded here
+                                console.log(values);
+                                this.props.DataStore.setWhere(values.where);
+                                //setWhere("")
                                 console.log(JSON.stringify(values, null, 2));
                                 setSubmitting(false);
                             }, 400);
