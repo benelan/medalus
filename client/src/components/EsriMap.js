@@ -83,7 +83,7 @@ class EsriMap extends Component {
           ]
         };
 
-        const url = "http://jbanuelos.esri.com/hackathon/almeda_2011.geojson";
+        const url = "http://belan2.esri.com:8080/almeda.geojson";
 
         const template = {
           title: "{OBJECTID}",
