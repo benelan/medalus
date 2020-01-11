@@ -3,14 +3,15 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import './UserInputForm.css';
 import styled from 'styled-components';
+import { observer, inject } from 'mobx-react'
 
 
-////////TODO convert this into a class based component!!!!!!!!!!!
-
+const UserInputForm = inject("DataStore")(observer(
 class UserInputForm extends React.Component {
 
     componentDidMount() {
         /*TODO: dynamically load the dropdown for counties */
+        console.log(this.props.DataStore.county)
     }
 
     render() {
@@ -23,10 +24,10 @@ class UserInputForm extends React.Component {
                     <div className="my-form" style={{backgroundColor: '#D0CFD4', paddingLeft: '40px'}} id="form">
                     <Formik
                         initialValues = {{
-                            where: '',
-                            extent: '',
-                            returnGeometry: '',
-                            outFields: ''
+                            where: this.props.DataStore.where,
+                            extent: this.props.DataStore.inputGeometry,
+                            returnGeometry: this.props.DataStore.returnGeometry,
+                            outFields: this.props.DataStore.outFields
                         }}
                         validationSchema={Yup.object({
                             where: Yup.string()
@@ -68,7 +69,7 @@ class UserInputForm extends React.Component {
             
         );
     }
-};
+}))
 
 const redErrorMessage = styled.p`
     color: #D12B27

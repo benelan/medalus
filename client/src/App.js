@@ -3,16 +3,18 @@ import NavBar from './components/NavBar';
 import UserInputForm from './components/UserInputForm';
 import About from './components/About';
 import EsriMap from './components/EsriMap';
+import { Provider } from 'mobx-react'
+import DataStore from './store/DataStore'
 
 const App = () => {
-    return (
-      <React.Fragment>
-        <NavBar />
-        {/*<EsriMap />*/}
-        <UserInputForm />
-        <About />
-      </React.Fragment>
-    );
-  }
+  return (
+    <Provider DataStore={DataStore}>
+      <NavBar />
+      <EsriMap />
+      <UserInputForm />
+      <About />
+    </Provider>
+  );
+}
 
 export default App;

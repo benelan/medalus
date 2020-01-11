@@ -2,9 +2,11 @@ import React, { Component } from "react";
 import { Col, Row } from "reactstrap";
 import { loadModules } from "esri-loader";
 import { loadCss } from "esri-loader";
+import { observer, inject } from 'mobx-react'
 
+const EsriMap = inject("DataStore")(observer(
 class EsriMap extends Component {
-  componentWillMount() {
+  componentDidMount() {
     loadCss();
     this.loadMap();
   }
@@ -81,7 +83,7 @@ class EsriMap extends Component {
           ]
         };
 
-        const url = "https://kghime.esri.com/geojsonHack/almeda.geojson";
+        const url = "http://jbanuelos.esri.com/hackathon/almeda_2011.geojson";
 
         const template = {
           title: "{OBJECTID}",
@@ -181,12 +183,12 @@ class EsriMap extends Component {
       <Row id="map">
         <Col md={12}>
           <div id="viewDiv" style={mD}>
-            <button id="feature-count" class="esri-widget">
+            <button id="feature-count" className="esri-widget">
               Number of Features
             </button>
             <span id="select-county-title">Select a county:</span>
             <br />
-            <select id="county" class="esri-select">
+            <select id="county" className="esri-select">
               <option value="San Bernardino">San Bernardino</option>
               <option value="Los Angeles">Los Angeles</option>
               <option value="San Francisco">San Francisco</option>
@@ -201,6 +203,6 @@ class EsriMap extends Component {
       </Row>
     );
   }
-}
+}))
 
 export default EsriMap;

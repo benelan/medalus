@@ -15,7 +15,10 @@ router.get('/api/getData', (req, res) => {
   const { spawn } = require("child_process");
   var process = spawn('python', [appDir + "/models/python/test.py",
   req.query.county,
-  req.query.name]);
+  req.query.where,
+  req.query.inputGeometry,
+  req.query.outFields,
+  req.query.returnGeometry]);
 
   // Takes stdout data from script which executed 
   // with arguments and send this data to res object 

@@ -3,4 +3,7 @@ import sys
 # line arguments and then display them 
 print("Output from Python:") 
 print("<br>County: " + sys.argv[1]) 
-print("<br>Name: " + sys.argv[2])
+print("<br>Where: " + sys.argv[2])
+print("<br>Input Geometry: " + sys.argv[3]) 
+print("<br>Out Fields: " + sys.argv[4])
+print("<br>returnGeometry: " + sys.argv[5])
