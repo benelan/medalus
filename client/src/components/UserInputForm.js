@@ -6,7 +6,7 @@ import styled from 'styled-components';
 
 const UserInputForm = () => {
     return (
-        <div className="my-form" style={{paddingLeft: '20px'}}>
+        <div className="my-form" style={{paddingLeft: '20px'}} id="form">
             <Formik
                 initialValues = {{
                     where: '',
