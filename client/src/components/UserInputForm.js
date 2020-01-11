@@ -51,7 +51,7 @@ const UserInputForm = inject("DataStore")(observer(
                             onSubmit={(values, { setSubmitting }) => {
                                 setTimeout(() => {
                                     this.props.DataStore.setWhere(values.where);
-                                    this.props.DataStore.setCount(values.county);
+                                    this.props.DataStore.setCounty(values.county);
                                     console.log(JSON.stringify(values, null, 2));
                                     setSubmitting(false);
                                 }, 400);

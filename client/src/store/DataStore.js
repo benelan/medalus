@@ -8,8 +8,8 @@ class DataStore {
     returnGeometry = '';
 
 
-    setCount(x) {
-        this.count = x;
+    setCounty(x) {
+        this.county = x;
     }
     setWhere(x) {
         this.where = x;

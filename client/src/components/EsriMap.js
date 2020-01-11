@@ -13,6 +13,7 @@ class EsriMap extends Component {
   }
 
   loadMap() {
+    const that = this;
     // this will lazy load the ArcGIS API
     // and then use Dojo's loader to require the classes
     loadModules([
@@ -25,6 +26,9 @@ class EsriMap extends Component {
       .then(([Map, MapView, GeoJSONLayer, TimeSlider, watchUtils]) => {
         let geojsonLayerView;
         let handle;
+        if(that.props.DataStore.county.length > 0){
+          console.log("SUCCESS!!!!");
+        }
         // // then we load a web map from an id
         // var webmap = new WebMap({
         //   portalItem: { // autocasts as new PortalItem()
@@ -216,9 +220,8 @@ class EsriMap extends Component {
       filterVisibility = {visibility: 'hidden'};
       definitionExpression = '';
     }
+    console.log('county ', this.props.DataStore.county);
 
-    
-    console.log(filterVisibility);
     return (
       <Row id="map">
         <Col md={12}>
