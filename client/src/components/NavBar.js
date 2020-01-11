@@ -9,7 +9,8 @@ const NavBar = () => {
     return (
         <div className="ui inverted vertical center aligned segment">
             <Navbar dark>
-                <NavbarBrand className="mr-auto brand">Brought to You By the Esri Support Services SDK and Enteprise Team</NavbarBrand>
+                <img src={process.env.PUBLIC_URL + './cactus.png'} alt="logo" className="img-fluid" style={{ width: 50 }} />
+                <NavbarBrand className="mr-auto brand">Brought to You By Esri Support Services</NavbarBrand>
                 <NavbarToggler onClick={toggleNavbar} className="mr-2" />
                 <Collapse isOpen={!collapsed} navbar>
                     <Nav navbar>
