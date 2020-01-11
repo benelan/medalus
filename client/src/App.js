@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.css';
 import { loadCss } from 'esri-loader'
 import { loadMap } from './esriMap/'
 import NavBar from './components/NavBar';
@@ -7,12 +6,6 @@ import UserInputForm from './components/UserInputForm';
 import About from './components/About';
 
 class App extends React.Component {
-
-  state = { collapsed: true };
-
-  toggleNavbar = () => {
-    this.setState({ collapsed: !this.state.collapsed });
-  }
 
   componentWillMount() {
     loadCss()
@@ -27,7 +20,7 @@ class App extends React.Component {
 
     return (
       <React.Fragment>
-        <NavBar onClick={this.toggleNavbar} collapsed={this.state.collapsed} />
+        <NavBar />
         <div id="viewDiv" style={mD}></div>
         <UserInputForm />
         <About />
