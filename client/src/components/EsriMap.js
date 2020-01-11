@@ -6,6 +6,7 @@ import { observer, inject } from 'mobx-react'
 
 const EsriMap = inject("DataStore")(observer(
 class EsriMap extends Component {
+
   componentDidMount() {
     loadCss();
     this.loadMap();
@@ -18,10 +19,12 @@ class EsriMap extends Component {
       "esri/Map",
       "esri/views/MapView",
       "esri/layers/GeoJSONLayer",
-      "esri/widgets/TimeSlider"
+      "esri/widgets/TimeSlider",
+      "esri/core/watchUtils"
     ])
-      .then(([Map, MapView, GeoJSONLayer, TimeSlider]) => {
+      .then(([Map, MapView, GeoJSONLayer, TimeSlider, watchUtils]) => {
         let geojsonLayerView;
+        let handle;
         // // then we load a web map from an id
         // var webmap = new WebMap({
         //   portalItem: { // autocasts as new PortalItem()
@@ -134,11 +137,30 @@ class EsriMap extends Component {
         var county = document.getElementById("county");
         var selectCountyTitle = document.getElementById("select-county-title");
         const filterBtn = document.getElementById("filterBtn");
+        const txtBox = document.getElementById("txtBox");
 
         view.ui.add(filterBtn, "top-right");
-        view.ui.add(featureCount, "top-right");
-        view.ui.add(selectCountyTitle, "top-right");
-        view.ui.add(county, "top-right");
+        view.ui.add(txtBox, "top-right");
+        //view.ui.add(featureCount, "top-right");
+        //view.ui.add(selectCountyTitle, "top-right");
+        //view.ui.add(county, "top-right");
+
+        filterBtn.onclick = function(){
+          geojsonLayerView.filter = {
+            where: txtBox.value
+          }
+        };
+
+        view.when(()=> {
+          view.whenLayerView(geoJSONLayer)
+            .then((layerView) => {
+              geojsonLayerView = layerView;
+              handle = watchUtils.watch(geojsonLayerView, 'updating', ()=> {
+                  console.log('finished loading the layer!');
+              });
+            })
+            .catch(err => console.log('failed in layerview ', err));
+        });
 
         //Button click event on counting number of features
         featureCount.addEventListener("click", function() {
@@ -176,6 +198,8 @@ class EsriMap extends Component {
         console.error(err);
       });
 
+      
+
   }
 
   render() {
@@ -183,12 +207,25 @@ class EsriMap extends Component {
       width: "100%",
       height: "600px"
     };
+    let definitionExpression;
+    let filterVisibility = {};
+    if(this.props.DataStore.where.length > 0) {
+      filterVisibility = {visibility: 'visible'};
+      definitionExpression = this.props.DataStore.where;
+    } else {
+      filterVisibility = {visibility: 'hidden'};
+      definitionExpression = '';
+    }
+
+    
+    console.log(filterVisibility);
     return (
       <Row id="map">
         <Col md={12}>
           <div id="viewDiv" style={mD}>
-            <button id="filterBtn">Filter</button>
-            <button id="feature-count" className="esri-widget">
+            <button id="filterBtn" className="esri-widget" style={filterVisibility}>Filter</button>
+            <input type="text" id="txtBox" className="esri-widget" style={{visibility: filterVisibility.visibility, backgroundColor: '#FFFFFF'}} value={definitionExpression} readOnly></input>
+            {/* <button id="feature-count" className="esri-widget">
               Number of Features
             </button>
             <span id="select-county-title">Select a county:</span>
@@ -200,7 +237,7 @@ class EsriMap extends Component {
               <option value="Santa Clara">Santa Clara</option>
               <option value="San Diego">San Diego</option>
               
-            </select>
+            </select> */}
             <div id="timeSliderDiv"></div>
           </div>
           
