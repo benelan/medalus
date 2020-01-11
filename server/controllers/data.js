@@ -16,9 +16,7 @@ router.get('/api/getData', (req, res) => {
   var process = spawn('python', [appDir + "/models/python/test.py",
   req.query.county,
   req.query.where,
-  req.query.inputGeometry,
-  req.query.outFields,
-  req.query.returnGeometry]);
+  req.query.inputGeometry]);
 
   // Takes stdout data from script which executed 
   // with arguments and send this data to res object 
@@ -27,7 +25,9 @@ router.get('/api/getData', (req, res) => {
   })
 
  process.on('exit', function() {
-    console.log('python script finished')
+    console.log('python script finished. merging geojsons')
+    dm.mergeGeoJSON();
+    console.log("geojsons merged");
   })
 });
 
