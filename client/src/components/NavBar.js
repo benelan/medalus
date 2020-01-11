@@ -22,6 +22,7 @@ const NavBar = (props) => {
                         smooth={true}
                         offset={-70}
                         duration={500}
+                        style={{cursor: 'pointer'}}
                     >Form</Link>
                     </NavItem>
                     <NavItem>
@@ -32,6 +33,7 @@ const NavBar = (props) => {
                         smooth={true}
                         offset={-70}
                         duration={500}
+                        style={{cursor: 'pointer'}}
                     >About</Link>
                     </NavItem>
                 </Nav>
