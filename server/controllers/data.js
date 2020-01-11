@@ -5,11 +5,11 @@ const express = require('express')
 
 const appDir = path.dirname(require.main.filename);
 
-// this is our get method
 router.get('/api/mergeData', (req, res) => {
   dm.mergeGeoJSON();
   res.send('merged');
 });
+
 
 router.get('/api/getData', (req, res) => {
   const { spawn } = require("child_process");
