@@ -80,6 +80,14 @@ export function loadMap() {
           });
         });
       });
+
+//symbology for rendering unique values based on Grid Codes
+
+
+
+
+
+
     }) //end of module
     .catch(err => {
       // handle any errors
