@@ -12,6 +12,10 @@ class EsriMap extends Component {
     this.loadMap();
   }
 
+  onClickHandler = () => {
+    this.props.DataStore.setClicked(this.props.DataStore.clicked);
+  }
+
   loadMap() {
     const that = this;
     // this will lazy load the ArcGIS API
@@ -241,13 +245,14 @@ class EsriMap extends Component {
     
     let filterVisibility = this.props.DataStore.where.length > 0 || this.props.DataStore.inputGeometry.length > 0 ? {visibility: 'visible'} : {visibility: 'hidden'};
     this.props.DataStore.inputGeometry.length > 0 ? console.log('extent', this.props.DataStore.inputGeometry) : console.log('no extent');
+    let refreshVisibility = this.props.DataStore.clicked ? {visibility: 'visible'} : {visibility: 'hidden'};
 
     return (
       <Row id="map">
         <Col md={12}>
           <div id="viewDiv" style={mD}>
             <div id="refreshDiv" style={{position: "absolute", top: "50%", left: "50%", width: "250px", height: "80px", margin: "-40px 0 0 -125px", visibility: {filterVisibility}}}>
-              <button id="refreshBtn" className="circular ui button" style={filterVisibility}>Refresh
+              <button id="refreshBtn" className="circular ui button" style={refreshVisibility} onClick={this.onClickHandler}>Refresh
                 <img src={process.env.PUBLIC_URL + './icon-refresh.png'} alt="refresh-icon"></img>
               </button>
             </div>
