@@ -13,8 +13,8 @@ const UserInputForm = inject("DataStore")(observer(
             /*TODO: dynamically load the dropdown for counties */
         }
 
-        queryLayer = (dataObj) => {
-            let url = "https://jbanuelos.esri.com/hackathon/almeda_2011.geojson?f=json";
+        queryAPI = (dataObj) => {
+            let url = "http://belan2.esri.com:8080/api/getData?f=json";
 
             var query = Object.keys(dataObj)
                 .map(k => encodeURIComponent(k) + '=' + encodeURIComponent(dataObj[k]))
@@ -47,11 +47,12 @@ const UserInputForm = inject("DataStore")(observer(
                             })}
                             onSubmit={(values, { setSubmitting }) => {
                                 setTimeout(() => {
-                                    console.log(values);
                                     this.props.DataStore.setWhere(values.where);
                                     this.props.DataStore.setCounty(values.county);
                                     this.props.DataStore.setInputGeometry(values.extent);
                                     this.props.DataStore.setClicked(this.props.DataStore.clicked);
+                                    //query our api for the python script
+                                    queryAPI(values.county);
                                     console.log(JSON.stringify(values, null, 2));
                                     setSubmitting(false);
                                 }, 400);
