@@ -49,6 +49,7 @@ const UserInputForm = inject("DataStore")(observer(
                             })}
                             onSubmit={(values, { setSubmitting }) => {
                                 setTimeout(() => {
+                                    console.log(values);
                                     this.props.DataStore.setWhere(values.where);
                                     this.props.DataStore.setCounty(values.county);
                                     this.props.DataStore.setInputGeometry(values.extent)
