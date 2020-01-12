@@ -12,23 +12,28 @@ router.get('/api/mergeData', (req, res) => {
 
 
 router.get('/api/getData', (req, res) => {
-  const { spawn } = require("child_process");
-  var process = spawn('python', [appDir + "/models/python/test.py",
-  req.query.county,
-  req.query.where,
-  req.query.inputGeometry]);
+  const child = require("child_process").spawnSync;
+  var process = child('python', [appDir + "\\models\\python\\clip.py",
+  req.query.county]);
 
-  // Takes stdout data from script which executed 
-  // with arguments and send this data to res object 
-  process.stdout.on('data', function (data) {
-    res.send(data.toString());
-  })
+  //Takes stdout data from script which executed 
+  //with arguments and logs it
+//   process.stdout.on('data', function(data) { 
+//     res.send(data.toString()); 
+// } ) 
 
- process.on('exit', function() {
-    console.log('python script finished. merging geojsons')
-    dm.mergeGeoJSON();
-    console.log("geojsons merged");
-  })
+//  process.on('exit', function(exit) {
+//     console.log('exited with code: ' + exit)
+//     dm.mergeGeoJSON();
+//     console.log("geojsons merged");
+//   })
+
+  var errorText = process.stderr.toString().trim();
+
+	if (errorText) {
+	  console.log('Fatal error from `git log`.  You must have one commit before deploying.');
+	  throw new Error(errorText);
+	}
 });
 
 module.exports = router

@@ -6,7 +6,7 @@ module.exports = {
   mergeGeoJSON: function () {
     // io paths
     var appDir = path.dirname(require.main.filename);
-    var input = appDir + "/models/input/";
+    var input = appDir + "/models/geojsons/";
     var output = appDir + "/models/output/output.geojson"
 
     var jsons = [];
