@@ -149,8 +149,23 @@ class EsriMap extends Component {
         //view.ui.add(county, "top-right");
 
         refreshBtn.onclick = function(){
+          const extent = JSON.parse(that.props.DataStore.inputGeometry);
+          let polygon = {
+            type: "polygon",
+            rings: [
+              [extent.xmin, extent.ymin],
+              [extent.xmin, extent.ymax],
+              [extent.xmax, extent.ymax],
+              [extent.xmax, extent.ymin],
+              [extent.xmin, extent.ymin]
+            ]
+          }
+          const where = that.props.DataStore.where;
+
           geojsonLayerView.filter = {
-            where: that.props.DataStore.where
+            where: where,
+            geometry: polygon,
+            spatialRelationship: "intersects"
           }
         };
 
@@ -210,8 +225,9 @@ class EsriMap extends Component {
       width: "100%",
       height: "600px"
     };
-
+    
     let filterVisibility = this.props.DataStore.where.length > 0 ? {visibility: 'visible'} : {visibility: 'hidden'};
+    this.props.DataStore.inputGeometry.length > 0 ? console.log('extent', this.props.DataStore.inputGeometry) : console.log('no extent');
 
     return (
       <Row id="map">
