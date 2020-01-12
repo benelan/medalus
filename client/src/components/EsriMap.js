@@ -2,7 +2,62 @@ import React, { Component } from "react";
 import { Col, Row, Spinner } from "reactstrap";
 import { loadModules } from "esri-loader";
 import { loadCss } from "esri-loader";
+<<<<<<< HEAD
 import { observer, inject } from "mobx-react";
+=======
+import { observer, inject } from 'mobx-react'
+
+const EsriMap = inject("DataStore")(observer(
+class EsriMap extends Component {
+
+  //adding the comment for merging
+  componentDidMount() {
+    loadCss();
+    this.loadMap();
+  }
+
+  onClickHandler = () => {
+    this.props.DataStore.setClicked(this.props.DataStore.clicked);
+  }
+
+  loadMap() {
+    const that = this;
+    // this will lazy load the ArcGIS API
+    // and then use Dojo's loader to require the classes
+    loadModules([
+      "esri/Map",
+      "esri/views/MapView",
+      "esri/layers/GeoJSONLayer",
+      "esri/widgets/TimeSlider",
+      "esri/core/watchUtils"
+    ])
+      .then(([Map, MapView, GeoJSONLayer, TimeSlider, watchUtils]) => {
+        let geojsonLayerView;
+        let handle;
+        if(that.props.DataStore.county.length > 0){
+          console.log("SUCCESS!!!!");
+        }
+        // // then we load a web map from an id
+        // var webmap = new WebMap({
+        //   portalItem: { // autocasts as new PortalItem()
+        //     id: 'f2e9b762544945f390ca4ac3671cfa72'
+        //   }
+        // });
+        // // and we show that map in a container w/ id #viewDiv
+        // var view = new MapView({
+        //   map: webmap,
+        //   container: 'viewDiv'
+        // });
+
+        //symbology for rendering unique values based on Grid Codes
+
+        //symbol for Grid Code 1
+        const codeOne = {
+          type: "simple-fill", //autocast as new SimpleFillSymbol()
+          color: [255, 255, 0, 1], //yellow
+          style: "solid"
+        };
+>>>>>>> loader
 
 const EsriMap = inject("DataStore")(
   observer(
