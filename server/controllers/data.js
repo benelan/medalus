@@ -12,11 +12,9 @@ router.get('/api/mergeData', (req, res) => {
 
 
 router.get('/api/getData', (req, res) => {
-  // const child = require("child_process").spawnSync;
-  // var process = child('python', [appDir + "\\models\\python\\clip.py",
-  // req.query.county]);
   const child = require("child_process").spawnSync;
-  var process = child('python', ["D:\ReactApps\hackathon\medalus\server\models\python\clip.py", req.query.county]);
+  var process = child('python', [appDir + "\\models\\python\\clip.py",
+  req.query.county]);
 
   //Takes stdout data from script which executed 
   //with arguments and logs it
@@ -29,16 +27,13 @@ router.get('/api/getData', (req, res) => {
 //     dm.mergeGeoJSON();
 //     console.log("geojsons merged");
 //   })
-  if(process.stderr != null){
-    var errorText = process.stderr.toString().trim();
-    if (errorText) {
-      console.log('Fatal error from `git log`.  You must have one commit before deploying.');
-      throw new Error(errorText);
-    }
-  }
-  
 
+  var errorText = process.stderr.toString().trim();
 
+	if (errorText) {
+	  console.log('Fatal error from `git log`.  You must have one commit before deploying.');
+	  throw new Error(errorText);
+	}
 });
 
 module.exports = router
