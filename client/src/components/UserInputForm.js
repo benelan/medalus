@@ -74,6 +74,7 @@ const UserInputForm = inject("DataStore")(observer(
                                 <Field name="extent" as="textarea" className="form-input"></Field>
                                 <br />
                                 <button type="submit">Submit</button>
+                                <button type="reset">Reset</button>
                             </Form>
                         </Formik>
                     </Col>
