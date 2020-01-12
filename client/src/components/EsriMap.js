@@ -83,10 +83,12 @@ const EsriMap = inject("DataStore")(
 
             //const url = "http://belan2.esri.com:8080/almeda.geojson";
             //const url="https://jbanuelos.esri.com/hackathon/almeda_2011.geojson";
-            const url =
-              "https://bsvensson.github.io/various-tests/geojson/usgs-earthquakes-06182019.geojson";
+            // const url =
+            //   "https://bsvensson.github.io/various-tests/geojson/usgs-earthquakes-06182019.geojson";
             // const url =
             //   "https://kghime.esri.com/geojsonHack/SanDiego_2011.geojson";
+            const url = "https://kghime.esri.com/geojsonHack/output.geojson";
+
             console.log(url);
             const template = {
               title: "{OBJECTID}",
@@ -97,12 +99,12 @@ const EsriMap = inject("DataStore")(
             const geoJSONLayer = new GeoJSONLayer({
               url: url,
               popupTemplate: template,
-              //renderer: renderer
+              renderer: renderer,
               timeInfo: {
-                startField: "time" //name of the date field
+                startField: "Year" //name of the date field
               },
               interval: {
-                unit: "days",
+                unit: "years",
                 value: 1
               }
             });
@@ -128,7 +130,7 @@ const EsriMap = inject("DataStore")(
               stops: {
                 interval: {
                   value: 1,
-                  unit: "hours"
+                  unit: "days"
                 }
               }
             });
@@ -194,24 +196,28 @@ const EsriMap = inject("DataStore")(
                   );
 
                   //const start = new Date(2019, 4, 25);
-                  const start = geoJSONLayer.timeInfo.fullTimeExtent.start;
-                  timeSlider.fullTimeExtent = {
-                    start: start,
-                    end: geoJSONLayer.timeInfo.fullTimeExtent.end
-                  };
+                 const start = geoJSONLayer.timeInfo.fullTimeExtent.start;
+                //   console.log(start);
+                //   const end = geoJSONLayer.timeInfo.fullTimeExtent.end;
+                //   console.log(end);
+                    timeSlider.fullTimeExtent = {
+                      start: start,
+                      end: geoJSONLayer.timeInfo.fullTimeExtent.end
+                    };
 
-                  const end = new Date(start);
-                  end.setDate(end.getDate() + 1);
-
+                    const end = new Date(start);
+                    end.setDate(end.getDate() + 1);
+                //   const end = geoJSONLayer.timeInfo.fullTimeExtent.end;
+                //   console.log(start);
+                //   console.log(end);
                   timeSlider.values = [start, end];
-
                 })
                 .catch(err => console.log("failed in layerview ", err));
             });
 
             timeSlider.watch("timeExtent", function() {
               geoJSONLayer.definitionExpression =
-                "time <= " + timeSlider.timeExtent.end.getTime();
+                "Year <= " + timeSlider.timeExtent.end.getTime();
 
               geojsonLayerView.effect = {
                 filter: {
