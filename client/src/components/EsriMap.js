@@ -13,6 +13,7 @@ class EsriMap extends Component {
   }
 
   loadMap() {
+    const that = this;
     // this will lazy load the ArcGIS API
     // and then use Dojo's loader to require the classes
     loadModules([
@@ -25,6 +26,9 @@ class EsriMap extends Component {
       .then(([Map, MapView, GeoJSONLayer, TimeSlider, watchUtils]) => {
         let geojsonLayerView;
         let handle;
+        if(that.props.DataStore.county.length > 0){
+          console.log("SUCCESS!!!!");
+        }
         // // then we load a web map from an id
         // var webmap = new WebMap({
         //   portalItem: { // autocasts as new PortalItem()
@@ -87,8 +91,9 @@ class EsriMap extends Component {
           ]
         };
 
-        const url = "http://belan2.esri.com:8080/almeda.geojson";
-
+        //const url = "http://belan2.esri.com:8080/almeda.geojson";
+        const url="https://jbanuelos.esri.com/hackathon/almeda_2011.geojson";
+        
         const template = {
           title: "{OBJECTID}",
           content:
@@ -133,21 +138,19 @@ class EsriMap extends Component {
         });
         view.ui.add(timeSlider, "manual");
 
-        var featureCount = document.getElementById("feature-count");
-        var county = document.getElementById("county");
-        var selectCountyTitle = document.getElementById("select-county-title");
-        const filterBtn = document.getElementById("filterBtn");
-        const txtBox = document.getElementById("txtBox");
+        //var featureCount = document.getElementById("feature-count");
+        //var county = document.getElementById("county");
+        //var selectCountyTitle = document.getElementById("select-county-title");
+        const refreshBtn = document.getElementById("refreshDiv");
 
-        view.ui.add(filterBtn, "top-right");
-        view.ui.add(txtBox, "top-right");
+        view.ui.add(refreshBtn, "manual");
         //view.ui.add(featureCount, "top-right");
         //view.ui.add(selectCountyTitle, "top-right");
         //view.ui.add(county, "top-right");
 
-        filterBtn.onclick = function(){
+        refreshBtn.onclick = function(){
           geojsonLayerView.filter = {
-            where: txtBox.value
+            where: that.props.DataStore.where
           }
         };
 
@@ -163,35 +166,35 @@ class EsriMap extends Component {
         });
 
         //Button click event on counting number of features
-        featureCount.addEventListener("click", function() {
-          console.log("button clicked");
+        // featureCount.addEventListener("click", function() {
+        //   console.log("button clicked");
 
-          view
-            .whenLayerView(geoJSONLayer)
-            .then(function(layerView) {
-              return layerView.queryFeatureCount();
-            })
-            .then(function(count) {
-              console.log(count); // prints the total number of client-side graphics to the console
-            });
-        });
+        //   view
+        //     .whenLayerView(geoJSONLayer)
+        //     .then(function(layerView) {
+        //       return layerView.queryFeatureCount();
+        //     })
+        //     .then(function(count) {
+        //       console.log(count); // prints the total number of client-side graphics to the console
+        //     });
+        // });
 
         //Dropdown selection event to select a county and map over it
         // var highlight;
-        county.addEventListener("change", function(event) {
-          console.log(event);
-          var highlight;
-          view.whenLayerView(geoJSONLayer).then(function(layerView) {
-            var query = geoJSONLayer.createQuery();
-            query.where = "OBJECTID = 872";
-            geoJSONLayer.queryFeatures(query).then(function(result) {
-              if (highlight) {
-                highlight.remove();
-              }
-              highlight = layerView.highlight(result.features);
-            });
-          });
-        });
+        // county.addEventListener("change", function(event) {
+        //   console.log(event);
+        //   var highlight;
+        //   view.whenLayerView(geoJSONLayer).then(function(layerView) {
+        //     var query = geoJSONLayer.createQuery();
+        //     query.where = "OBJECTID = 872";
+        //     geoJSONLayer.queryFeatures(query).then(function(result) {
+        //       if (highlight) {
+        //         highlight.remove();
+        //       }
+        //       highlight = layerView.highlight(result.features);
+        //     });
+        //   });
+        // });
       }) //end of module
       .catch(err => {
         // handle any errors
@@ -207,24 +210,18 @@ class EsriMap extends Component {
       width: "100%",
       height: "600px"
     };
-    let definitionExpression;
-    let filterVisibility = {};
-    if(this.props.DataStore.where.length > 0) {
-      filterVisibility = {visibility: 'visible'};
-      definitionExpression = this.props.DataStore.where;
-    } else {
-      filterVisibility = {visibility: 'hidden'};
-      definitionExpression = '';
-    }
 
-    
-    console.log(filterVisibility);
+    let filterVisibility = this.props.DataStore.where.length > 0 ? {visibility: 'visible'} : {visibility: 'hidden'};
+
     return (
       <Row id="map">
         <Col md={12}>
           <div id="viewDiv" style={mD}>
-            <button id="filterBtn" className="esri-widget" style={filterVisibility}>Filter</button>
-            <input type="text" id="txtBox" className="esri-widget" style={{visibility: filterVisibility.visibility, backgroundColor: '#FFFFFF'}} value={definitionExpression} readOnly></input>
+            <div id="refreshDiv" style={{position: "absolute", top: "50%", left: "50%", width: "250px", height: "80px", margin: "-40px 0 0 -125px", visibility: {filterVisibility}}}>
+              <button id="refreshBtn" className="circular ui button" style={filterVisibility}>Refresh
+                <img src={process.env.PUBLIC_URL + './icon-refresh.png'} alt="refresh-icon"></img>
+              </button>
+            </div>  
             {/* <button id="feature-count" className="esri-widget">
               Number of Features
             </button>

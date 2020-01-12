@@ -1,15 +1,15 @@
 import { action, observable, decorate } from "mobx"
 
 class DataStore {
-    county = 'Almeda';
+    county = '';
     where = '';
     inputGeometry = '';
     outFields = '';
     returnGeometry = '';
 
 
-    setCount(x) {
-        this.count = x;
+    setCounty(x) {
+        this.county = x;
     }
     setWhere(x) {
         this.where = x;

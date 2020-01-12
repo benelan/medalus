@@ -39,9 +39,9 @@ const UserInputForm = inject("DataStore")(observer(
                     <Col md={{ size: 7, offset: 5 }} className="my-form">
                         <Formik
                             initialValues={{
+                                county: this.props.DataStore.county,
                                 where: this.props.DataStore.where,
-                                extent: this.props.DataStore.inputGeometry,
-                                county: this.props.DataStore.county
+                                extent: this.props.DataStore.inputGeometry     
                             }}
                             validationSchema={Yup.object({
                                 county: Yup.string()
@@ -50,7 +50,8 @@ const UserInputForm = inject("DataStore")(observer(
                             onSubmit={(values, { setSubmitting }) => {
                                 setTimeout(() => {
                                     this.props.DataStore.setWhere(values.where);
-                                    this.props.DataStore.setCount(values.county);
+                                    this.props.DataStore.setCounty(values.county);
+                                    this.props.DataStore.setInputGeometry(values.extent)
                                     console.log(JSON.stringify(values, null, 2));
                                     setSubmitting(false);
                                 }, 400);
@@ -65,11 +66,11 @@ const UserInputForm = inject("DataStore")(observer(
                                     <option value="San Francisco">San Francisco</option>
                                     <option value="Santa Clara">Santa Clara</option>
                                 </Field>
+                                <ErrorMessage name="county" component={redErrorMessage} />
                                 <label htmlFor="where">Where</label>
                                 <Field name="where" type="text" />
-                                <ErrorMessage name="where" component={redErrorMessage} />
                                 <label htmlFor="extent">Input Geometry</label>
-                                <Field name="extent" as="textarea" className="form-input" />
+                                <Field name="extent" as="textarea" className="form-input"></Field>
                                 <br />
                                 <button type="submit">Submit</button>
                             </Form>
