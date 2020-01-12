@@ -48,7 +48,7 @@ arcpy.env.workspace = r"C:\Users\ben10334\Desktop\medalus\server\models\Hackatho
 print (arcpy.env.workspace)
 
 #This is the place in the script where use input come in for the name of County. This will be triggered by the user selection in the App. At this moment user type it out.
-countyName = 'Orange' #sys.argv[1]
+countyName = sys.argv[1]
 
 print(countyName)
 #A function to remove spaces in the county name so that the select layer by attribute does not fail. We had to strip the spaces in name to make sure data is stored correctly in a geodatabase

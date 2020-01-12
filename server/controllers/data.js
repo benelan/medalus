@@ -1,6 +1,7 @@
 const express = require('express')
   , router = express.Router()
   , path = require('path')
+  , cp = require("child_process")
   , dm = require('../models/merge');
 
 const appDir = path.dirname(require.main.filename);
@@ -12,8 +13,9 @@ router.get('/api/mergeData', (req, res) => {
 
 
 router.get('/api/getData', (req, res) => {
-  const spawn = require("child_process").spawnSync;
-  var cp = spawn('python', [appDir + "\\models\\python\\clip.py",
+  // Amador
+  // Yuba
+  var spawn = cp.spawn('python', [appDir + "\\models\\python\\clip.py",
   req.query.county],
   {
     cwd: process.cwd(),
@@ -22,25 +24,18 @@ router.get('/api/getData', (req, res) => {
     encoding: 'utf-8'
 });
 
-  //Takes stdout data from script which executed 
-  //with arguments and logs it
-//   process.stdout.on('data', function(data) { 
-//     res.send(data.toString()); 
-// } ) 
+ spawn.on('exit', function(exit) {
+    console.log('exited with code: ' + exit)
+    dm.mergeGeoJSON();
+    console.log("geojsons merged");
+  })
 
-//  process.on('exit', function(exit) {
-//     console.log('exited with code: ' + exit)
-//     dm.mergeGeoJSON();
-//     console.log("geojsons merged");
-//   })
-
-  console.log(cp.stdout.toString().trim());
-
-  var errorText = cp.stderr.toString().trim();
-
-	if (errorText) {
-	  throw new Error(errorText);
-	}
+  // for sync testing
+  // console.log(String(cp.stdout));
+  // var errorText = String(cp.stderr);
+	// if (errorText) {
+	//   throw new Error(errorText);
+	// }
 });
 
 module.exports = router

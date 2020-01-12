@@ -1,5 +1,6 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 /models/Hackathon_Medalaus.gdb
+/models/finalDatabase.gdb
 # dependencies
 /node_modules
 /.pnp
