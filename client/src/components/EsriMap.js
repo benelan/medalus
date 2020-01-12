@@ -149,24 +149,32 @@ class EsriMap extends Component {
         //view.ui.add(county, "top-right");
 
         refreshBtn.onclick = function(){
-          const extent = JSON.parse(that.props.DataStore.inputGeometry);
-          let polygon = {
-            type: "polygon",
-            rings: [
-              [extent.xmin, extent.ymin],
-              [extent.xmin, extent.ymax],
-              [extent.xmax, extent.ymax],
-              [extent.xmax, extent.ymin],
-              [extent.xmin, extent.ymin]
-            ]
-          }
+          const inputGeometry = that.props.DataStore.inputGeometry;
           const where = that.props.DataStore.where;
-
-          geojsonLayerView.filter = {
-            where: where,
-            geometry: polygon,
-            spatialRelationship: "intersects"
+          
+          if(Object.keys(inputGeometry).length !== 0){
+              const extent = JSON.parse(that.props.DataStore.inputGeometry);
+              const polygon = {
+                type: "polygon",
+                rings: [
+                  [extent.xmin, extent.ymin],
+                  [extent.xmin, extent.ymax],
+                  [extent.xmax, extent.ymax],
+                  [extent.xmax, extent.ymin],
+                  [extent.xmin, extent.ymin]
+                ]
+              };
+              geojsonLayerView.filter = {
+                geometry: polygon,
+                spatialRelationship: "intersects",
+                where: where
+              }
+          } else {
+              geojsonLayerView.filter = {
+                where: where
+              }
           }
+         
         };
 
         view.when(()=> {
@@ -226,7 +234,7 @@ class EsriMap extends Component {
       height: "600px"
     };
     
-    let filterVisibility = this.props.DataStore.where.length > 0 ? {visibility: 'visible'} : {visibility: 'hidden'};
+    let filterVisibility = this.props.DataStore.where.length > 0 || this.props.DataStore.inputGeometry.length > 0 ? {visibility: 'visible'} : {visibility: 'hidden'};
     this.props.DataStore.inputGeometry.length > 0 ? console.log('extent', this.props.DataStore.inputGeometry) : console.log('no extent');
 
     return (
