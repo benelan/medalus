@@ -13,8 +13,6 @@ const UserInputForm = inject("DataStore")(observer(
             /*TODO: dynamically load the dropdown for counties */
         }
 
-
-
         queryLayer = (dataObj) => {
             let url = "https://jbanuelos.esri.com/hackathon/almeda_2011.geojson?f=json";
 
