@@ -142,8 +142,10 @@ class EsriMap extends Component {
         //var county = document.getElementById("county");
         //var selectCountyTitle = document.getElementById("select-county-title");
         const refreshBtn = document.getElementById("refreshDiv");
+        const resetBtn = document.getElementById('resetBtn');
 
         view.ui.add(refreshBtn, "manual");
+        view.ui.add(resetBtn, "bottom-right");
         //view.ui.add(featureCount, "top-right");
         //view.ui.add(selectCountyTitle, "top-right");
         //view.ui.add(county, "top-right");
@@ -174,8 +176,11 @@ class EsriMap extends Component {
                 where: where
               }
           }
-         
         };
+
+        resetBtn.onclick = function() {
+          geojsonLayerView.filter = {where: '1=1'};
+        }
 
         view.when(()=> {
           view.whenLayerView(geoJSONLayer)
@@ -245,7 +250,8 @@ class EsriMap extends Component {
               <button id="refreshBtn" className="circular ui button" style={filterVisibility}>Refresh
                 <img src={process.env.PUBLIC_URL + './icon-refresh.png'} alt="refresh-icon"></img>
               </button>
-            </div>  
+            </div>
+            <button id="resetBtn" className="circular ui button" style={filterVisibility}>Reset</button>
             {/* <button id="feature-count" className="esri-widget">
               Number of Features
             </button>
