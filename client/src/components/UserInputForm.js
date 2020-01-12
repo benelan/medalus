@@ -13,8 +13,6 @@ const UserInputForm = inject("DataStore")(observer(
             /*TODO: dynamically load the dropdown for counties */
         }
 
-
-
         queryLayer = (dataObj) => {
             let url = "https://jbanuelos.esri.com/hackathon/almeda_2011.geojson?f=json";
 
@@ -52,7 +50,8 @@ const UserInputForm = inject("DataStore")(observer(
                                     console.log(values);
                                     this.props.DataStore.setWhere(values.where);
                                     this.props.DataStore.setCounty(values.county);
-                                    this.props.DataStore.setInputGeometry(values.extent)
+                                    this.props.DataStore.setInputGeometry(values.extent);
+                                    this.props.DataStore.setClicked(this.props.DataStore.clicked);
                                     console.log(JSON.stringify(values, null, 2));
                                     setSubmitting(false);
                                 }, 400);

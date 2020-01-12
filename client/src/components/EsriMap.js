@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Col, Row } from "reactstrap";
+import { Col, Row, Spinner } from "reactstrap";
 import { loadModules } from "esri-loader";
 import { loadCss } from "esri-loader";
 import { observer, inject } from "mobx-react";

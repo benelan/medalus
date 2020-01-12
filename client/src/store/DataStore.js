@@ -6,6 +6,8 @@ class DataStore {
     inputGeometry = '';
     outFields = '';
     returnGeometry = '';
+    clicked = false;
+    loaded = false;
 
 
     setCounty(x) {
@@ -23,6 +25,12 @@ class DataStore {
     setReturGeometry(x) {
         this.returnGeometry = x;
     }
+    setClicked(x) {
+        this.clicked = !x;
+    }
+    setLoaded(x) {
+        this.loaded = !x;
+    }
 }
 
 
@@ -32,11 +40,15 @@ decorate(DataStore, {
     inputGeometry: observable,
     outFields: observable,
     returnGeometry: observable,
+    clicked: observable,
+    loaded: observable,
     setCounty: action,
     setWhere: action,
     setInputGeometry: action,
     setOutFields: action,
-    setReturGeometry: action
+    setReturGeometry: action,
+    setClicked: action,
+    setLoaded: action
 })
 
 export default new DataStore()
