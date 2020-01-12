@@ -30,20 +30,6 @@ const EsriMap = inject("DataStore")(
           .then(([Map, MapView, GeoJSONLayer, TimeSlider, watchUtils]) => {
             let geojsonLayerView;
             let handle;
-            if (that.props.DataStore.county.length > 0) {
-              console.log("SUCCESS!!!!");
-            }
-            // // then we load a web map from an id
-            // var webmap = new WebMap({
-            //   portalItem: { // autocasts as new PortalItem()
-            //     id: 'f2e9b762544945f390ca4ac3671cfa72'
-            //   }
-            // });
-            // // and we show that map in a container w/ id #viewDiv
-            // var view = new MapView({
-            //   map: webmap,
-            //   container: 'viewDiv'
-            // });
 
             //symbology for rendering unique values based on Grid Codes
 
@@ -202,7 +188,7 @@ const EsriMap = inject("DataStore")(
                     "updating",
                     () => {
                       console.log("finished loading the layer!");
-
+                      that.props.DataStore.setLoaded(that.props.DataStore.loaded);
                       //const start = geoJSONLayer.timeInfo.fullTimeExtent.start;
                     }
                   );
@@ -295,6 +281,10 @@ const EsriMap = inject("DataStore")(
           ? console.log("extent", this.props.DataStore.inputGeometry)
           : console.log("no extent");
 
+        let refreshVisibility = this.props.DataStore.clicked ? {visibility: 'visible'} : {visibility: 'hidden'};
+        let loaderVisibility = this.props.DataStore.loaded ? {visibility: 'hidden'} : {visibility : 'visible'};
+
+
         return (
           <Row id="map">
             <Col md={12}>
@@ -314,7 +304,8 @@ const EsriMap = inject("DataStore")(
                   <button
                     id="refreshBtn"
                     className="circular ui button"
-                    style={filterVisibility}
+                    style={refreshVisibility}
+                    onClick={this.onClickHandler}
                   >
                     Refresh
                     <img
@@ -322,6 +313,8 @@ const EsriMap = inject("DataStore")(
                       alt="refresh-icon"
                     ></img>
                   </button>
+
+                  <Spinner animation="border" style={loaderVisibility} />
                 </div>
                 <button
                   id="resetBtn"
