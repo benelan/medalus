@@ -7,6 +7,7 @@ import { observer, inject } from 'mobx-react'
 const EsriMap = inject("DataStore")(observer(
 class EsriMap extends Component {
 
+  //adding the comment for merging
   componentDidMount() {
     loadCss();
     this.loadMap();
