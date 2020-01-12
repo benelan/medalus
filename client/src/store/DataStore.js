@@ -7,6 +7,7 @@ class DataStore {
     outFields = '';
     returnGeometry = '';
     clicked = false;
+    loaded = false;
 
 
     setCounty(x) {
@@ -27,6 +28,9 @@ class DataStore {
     setClicked(x) {
         this.clicked = !x;
     }
+    setLoaded(x) {
+        this.loaded = !x;
+    }
 }
 
 
@@ -37,12 +41,14 @@ decorate(DataStore, {
     outFields: observable,
     returnGeometry: observable,
     clicked: observable,
+    loaded: observable,
     setCounty: action,
     setWhere: action,
     setInputGeometry: action,
     setOutFields: action,
     setReturGeometry: action,
-    setClicked: action
+    setClicked: action,
+    setLoaded: action
 })
 
 export default new DataStore()

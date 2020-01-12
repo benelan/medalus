@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Col, Row } from "reactstrap";
+import { Col, Row, Spinner } from "reactstrap";
 import { loadModules } from "esri-loader";
 import { loadCss } from "esri-loader";
 import { observer, inject } from 'mobx-react'
@@ -192,6 +192,7 @@ class EsriMap extends Component {
               geojsonLayerView = layerView;
               handle = watchUtils.watch(geojsonLayerView, 'updating', ()=> {
                   console.log('finished loading the layer!');
+                  that.props.DataStore.setLoaded(that.props.DataStore.loaded);
               });
             })
             .catch(err => console.log('failed in layerview ', err));
@@ -246,6 +247,7 @@ class EsriMap extends Component {
     let filterVisibility = this.props.DataStore.where.length > 0 || this.props.DataStore.inputGeometry.length > 0 ? {visibility: 'visible'} : {visibility: 'hidden'};
     this.props.DataStore.inputGeometry.length > 0 ? console.log('extent', this.props.DataStore.inputGeometry) : console.log('no extent');
     let refreshVisibility = this.props.DataStore.clicked ? {visibility: 'visible'} : {visibility: 'hidden'};
+    let loader = this.props.DataStore.loaded ? {visibility: 'hidden'} : {visibility: 'visible'};
 
     return (
       <Row id="map">
@@ -255,6 +257,7 @@ class EsriMap extends Component {
               <button id="refreshBtn" className="circular ui button" style={refreshVisibility} onClick={this.onClickHandler}>Refresh
                 <img src={process.env.PUBLIC_URL + './icon-refresh.png'} alt="refresh-icon"></img>
               </button>
+              <Spinner animation="border" style={loader}></Spinner>
             </div>
             <button id="resetBtn" className="circular ui button" style={filterVisibility}>Reset</button>
             {/* <button id="feature-count" className="esri-widget">
