@@ -13,5 +13,5 @@ app.use(express.static(path.join(__dirname, "models", "output")))
 // app.get('*', (req, res) => {
 //     res.sendFile(path.join(__dirname, '..', 'client', 'build', 'index.html'))
 // })
-
-app.listen(port, () => console.log(`Listening on port ${port}`))
+var server = app.listen(port, () => console.log(`Listening on port ${port}`))
+ server.timeout = 1000000000;
