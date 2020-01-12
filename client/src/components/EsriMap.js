@@ -240,7 +240,7 @@ class EsriMap extends Component {
   render() {
     const mD = {
       width: "100%",
-      height: "600px"
+      height: "700px"
     };
     
     let filterVisibility = this.props.DataStore.where.length > 0 || this.props.DataStore.inputGeometry.length > 0 ? {visibility: 'visible'} : {visibility: 'hidden'};
