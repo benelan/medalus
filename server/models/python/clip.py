@@ -22,8 +22,10 @@ arcpy.env.overwriteOutput = True
 
 # Set workspsace. This is the master folder location 
 
-arcpy.env.workspace = r"C:\Users\ben10334\Desktop\medalus\server\models"
-out_folder_path = r"C:\Users\ben10334\Desktop\medalus\server\models"
+# arcpy.env.workspace = r"C:\Users\ben10334\Desktop\medalus\server\models"
+# out_folder_path = r"C:\Users\ben10334\Desktop\medalus\server\models"
+arcpy.env.workspace = r"C:\Users\jose9489\Desktop\medalus\server\models"
+out_folder_path = r"C:\Users\jose9489\Desktop\medalus\server\models"
 
 outgeo_name = "finalDatabase.gdb"
 outGeoJSONFolder_name = "geoJSONs"
@@ -43,7 +45,8 @@ else:
     
 
 #Set workspsace to a filegeodatabase with the final suitability rasters for each year and the county feature class
-arcpy.env.workspace = r"C:\Users\ben10334\Desktop\medalus\server\models\Hackathon_Medalaus.gdb"
+#arcpy.env.workspace = r"C:\Users\ben10334\Desktop\medalus\server\models\Hackathon_Medalaus.gdb"
+arcpy.env.workspace = r"C:\Users\jose9489\Desktop\medalus\server\models\Hackathon_Medalaus.gdb"
 #arcpy.env.workspace = r"../Hackathon_Medalaus.gdb"
 print (arcpy.env.workspace)
 
@@ -93,11 +96,11 @@ for raster in rasters:
         #print("This is the final destination of raster")
         #path of raster to be stored in the geodatabase
         finalDestRas = os.path.join(out_workspace, finalNameRas)
-        #print(finalDestRas)
+        print(finalDestRas)
         
         #clipping the raster based on the user selected/picked county
         arcpy.management.Clip(raster, "-124.40970799437 32.5341521020081 -114.131199635143 42.0095138983309", finalDestRas, featLayer, "-3.402823e+38", "ClippingGeometry", "NO_MAINTAIN_EXTENT")
-        #print ("raster is done")
+        print ("raster is done")
         
         #name of feature class
         finalNameFC = rightCountyName + "_" + yName + "FC"
