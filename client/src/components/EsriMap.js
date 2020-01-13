@@ -46,25 +46,41 @@ const EsriMap = inject("DataStore")(
               const codeOne = {
                 type: "simple-fill", //autocast as new SimpleFillSymbol()
                 color: [0, 100, 0, 1], //dark green
-                style: "solid"
+                style: "solid",
+                outline: {  // autocasts as new SimpleLineSymbol()
+                  color: "transparent",
+                  width: 0
+                }
               };
 
               const codeTwo = {
                 type: "simple-fill", //autocast as new SimpleFillSymbol()
-                color: [55, 165, 0, 1], //yellowish orange
-                style: "solid"
+                color: [255, 204, 0, 1], //yellowish orange
+                style: "solid",
+                outline: {  // autocasts as new SimpleLineSymbol()
+                  color: "transparent",
+                  width: 0
+                }
               };
 
               const codeThree = {
                 type: "simple-fill", //autocast as new SimpleFillSymbol()
                 color: [255, 0, 0, 1], //red
-                style: "solid"
+                style: "solid",
+                outline: {  // autocasts as new SimpleLineSymbol()
+                  color: "transparent",
+                  width: 0
+                }
               };
 
               const codeFour = {
                 type: "simple-fill", //autocast as new SimpleFillSymbol()
                 color: [128,128,128 ,1], //gray
-                style: "solid"
+                style: "solid",
+                outline: {  // autocasts as new SimpleLineSymbol()
+                  color: "transparent",
+                  width: 0
+                }
               };
 
               var renderer = {
@@ -127,7 +143,7 @@ const EsriMap = inject("DataStore")(
               const view = new MapView({
                 container: "viewDiv",
                 center: [-121.6169, 39.1404],
-                zoom: 10,
+                zoom: 4,
                 map: map
               });
 
@@ -136,11 +152,11 @@ const EsriMap = inject("DataStore")(
                 container: "timeSlider",
                 //view: view,
                 //mode: "cumulative-from-start",
-                playRate: 100,
+                playRate: 1000,
                 stops: {
                   interval: {
                     value: 1,
-                    unit: "months"
+                    unit: "years"
                   }
                 }
               });
@@ -228,27 +244,20 @@ const EsriMap = inject("DataStore")(
                         that.props.DataStore.setLoaded(
                           that.props.DataStore.loaded
                         );
-                        //const start = geoJSONLayer.timeInfo.fullTimeExtent.start;
                       }
                     );
-
+                    
+                    view.extent = geoJSONLayer.fullExtent; // zoom to extent
                     //const start = new Date(2019, 4, 25);
                     const start = geoJSONLayer.timeInfo.fullTimeExtent.start;
-                    //   console.log(start);
-                    //   const end = geoJSONLayer.timeInfo.fullTimeExtent.end;
-                    //   console.log(end);
+                    const end = geoJSONLayer.timeInfo.fullTimeExtent.end;
+
                     timeSlider.fullTimeExtent = {
                       start: start,
-                      end: geoJSONLayer.timeInfo.fullTimeExtent.end
+                      end: end
                     };
 
-                    const end = new Date(start);
-                   // end.setDate(end.getDate() + 1);
-                    end.setMonth(end.getMonth() + 1);
-                    //   const end = geoJSONLayer.timeInfo.fullTimeExtent.end;
-                    //   console.log(start);
-                    //   console.log(end);
-                    timeSlider.values = [start, end];
+                    timeSlider.values = [end, end];
                   })
                   .catch(err => console.log("failed in layerview ", err));
               });

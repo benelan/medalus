@@ -24,11 +24,11 @@ router.get('/api/getData', (req, res) => {
     encoding: 'utf-8'
 });
 
- spawn.on('exit', function(exit) {
+ spawn.on('exit', function(exit, s) {
     console.log('exited with code: ' + exit)
     dm.mergeGeoJSON();
     console.log("geojsons merged");
-    res.json({success: exit})
+    res.json({"success": exit, "signal": s})
   })
 
   // for sync testing
