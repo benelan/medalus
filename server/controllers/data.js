@@ -28,6 +28,7 @@ router.get('/api/getData', (req, res) => {
     console.log('exited with code: ' + exit)
     dm.mergeGeoJSON();
     console.log("geojsons merged");
+    res.json({success: exit})
   })
 
   // for sync testing

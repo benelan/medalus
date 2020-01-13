@@ -20,40 +20,41 @@ from datetime import datetime
 # Set overwrite
 arcpy.env.overwriteOutput = True
 
-# Set workspsace. This is the master folder location 
+#Set workspsace. This is the master folder location 
+arcpy.env.workspace = r"C:\Users\ben10334\Desktop\medalus\server\models"
+out_folder_path = r"C:\Users\ben10334\Desktop\medalus\server\models"
 
-# arcpy.env.workspace = r"C:\Users\ben10334\Desktop\medalus\server\models"
-# out_folder_path = r"C:\Users\ben10334\Desktop\medalus\server\models"
-arcpy.env.workspace = r"C:\Users\jose9489\Desktop\medalus\server\models"
-out_folder_path = r"C:\Users\jose9489\Desktop\medalus\server\models"
+# creating variables
+outgeo_name = "ClippedRasters.gdb"
+outGeoJSONFolder_name = "GeoJSONs"
 
-outgeo_name = "finalDatabase.gdb"
-outGeoJSONFolder_name = "geoJSONs"
 
 #checking and creating a filegeodatabase where the clipped rasters and subsequent feature class will be created
-if arcpy.Exists("finalDatabase.gdb"):
-    print ("The geodatabase for output raster and feature classes exists")
+if arcpy.Exists(outgeo_name):
+    arcpy.Delete_management(outgeo_name)
+    arcpy.CreateFileGDB_management(out_folder_path, outgeo_name)
 else:
     arcpy.CreateFileGDB_management(out_folder_path, outgeo_name)
 
 # checking and creating a folder in the master folder location to store GeoJSONS
 # create folder for geoJSONs 
-if arcpy.Exists("geoJSONs"):
-    print ("The folder for output GeoJSONs exists")
+if arcpy.Exists(outGeoJSONFolder_name):
+    arcpy.Delete_management(outGeoJSONFolder_name)
+    arcpy.CreateFolder_management(out_folder_path, outGeoJSONFolder_name)
 else:
     arcpy.CreateFolder_management(out_folder_path, outGeoJSONFolder_name)
     
 
 #Set workspsace to a filegeodatabase with the final suitability rasters for each year and the county feature class
-#arcpy.env.workspace = r"C:\Users\ben10334\Desktop\medalus\server\models\Hackathon_Medalaus.gdb"
-arcpy.env.workspace = r"C:\Users\jose9489\Desktop\medalus\server\models\Hackathon_Medalaus.gdb"
-#arcpy.env.workspace = r"../Hackathon_Medalaus.gdb"
-print (arcpy.env.workspace)
+arcpy.env.workspace = r"C:\Users\ben10334\Desktop\medalus\server\models\Dessertification.gdb"
+#print (arcpy.env.workspace)
+
+#variable for the county feature class
+featClass1 = "Counties"
 
 #This is the place in the script where use input come in for the name of County. This will be triggered by the user selection in the App. At this moment user type it out.
-countyName = sys.argv[1]
+countyName =  sys.argv[1]
 
-print(countyName)
 #A function to remove spaces in the county name so that the select layer by attribute does not fail. We had to strip the spaces in name to make sure data is stored correctly in a geodatabase
 def removeSpaces (countyName):
     rightName = (re.sub (r'\s+', '', countyName))
@@ -66,8 +67,9 @@ expression =  "Finalname='" + rightCountyName + "'"
 #print (expression)
 
 #Creation of feature layer from Select Layer by Attribute tool
-featLayer = arcpy.management.SelectLayerByAttribute("Counties", "NEW_SELECTION", expression, None)
-print('featLayer')
+print("creating feature layer")
+featLayer = arcpy.management.SelectLayerByAttribute(featClass1, "NEW_SELECTION", expression, None)
+
 #Using os module to get the paths right for outputs
 #print("This is outworkspace_path")
 out_workspace_path = os.path.dirname(arcpy.env.workspace)
@@ -96,11 +98,11 @@ for raster in rasters:
         #print("This is the final destination of raster")
         #path of raster to be stored in the geodatabase
         finalDestRas = os.path.join(out_workspace, finalNameRas)
-        print(finalDestRas)
-        
+        #print(finalDestRas)
+        print ("clipping raster")
         #clipping the raster based on the user selected/picked county
         arcpy.management.Clip(raster, "-124.40970799437 32.5341521020081 -114.131199635143 42.0095138983309", finalDestRas, featLayer, "-3.402823e+38", "ClippingGeometry", "NO_MAINTAIN_EXTENT")
-        print ("raster is done")
+        #print ("raster is done")
         
         #name of feature class
         finalNameFC = rightCountyName + "_" + yName + "FC"
@@ -116,7 +118,7 @@ for raster in rasters:
         
         #adding  two fields Name and Year
         arcpy.management.AddField(finalDestFC, "Name", "TEXT", None, None, None, '', "NULLABLE", "NON_REQUIRED", '')
-        arcpy.management.AddField(finalDestFC, "Year", "TEXT", None, None, None, '', "NULLABLE", "NON_REQUIRED", '')
+        arcpy.management.AddField(finalDestFC, "Year", "DATE", None, None, None, '', "NULLABLE", "NON_REQUIRED", '')
         #print ("Adding Fields is done")
         
         # calculating the two fields using cursor

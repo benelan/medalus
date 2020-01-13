@@ -28,10 +28,18 @@ module.exports = {
         jsons.push(json);
       });
 
-      console.log("merging ", jsons.length, "geojson files");
+      console.log("merging", jsons.length, "geojson files");
       // merge the array of jsons
+      let count = 0;
       var mergedGeoJSON = geojsonMerge.merge(jsons);
-
+      
+      console.log("resetting id for", mergedGeoJSON.features.length, "features")
+      mergedGeoJSON.features.forEach((feature) => {
+        count++;
+        feature.id=count;
+        feature.properties.Id=count;
+        feature.properties.OBJECTID=count;
+      })
       // write to a output geojson file
       fs.writeFile(output, JSON.stringify(mergedGeoJSON), (err) => {
         // throws an error, you could also catch it here
