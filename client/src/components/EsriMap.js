@@ -65,7 +65,7 @@ const EsriMap = inject("DataStore")(
               //symbol for Grid Code 1
               const codeOne = {
                 type: "simple-fill", //autocast as new SimpleFillSymbol()
-                color: [0, 100, 0, 1], //dark green
+                color: '#00734C', //dark green
                 style: "solid",
                 outline: {
                   // autocasts as new SimpleLineSymbol()
@@ -76,7 +76,7 @@ const EsriMap = inject("DataStore")(
 
               const codeTwo = {
                 type: "simple-fill", //autocast as new SimpleFillSymbol()
-                color: [255, 204, 0, 1], //yellowish orange
+                color: '#FFD37F', //yellowish orange
                 style: "solid",
                 outline: {
                   // autocasts as new SimpleLineSymbol()
@@ -87,7 +87,7 @@ const EsriMap = inject("DataStore")(
 
               const codeThree = {
                 type: "simple-fill", //autocast as new SimpleFillSymbol()
-                color: [255, 0, 0, 1], //red
+                color: '#A80000', //red
                 style: "solid",
                 outline: {
                   // autocasts as new SimpleLineSymbol()
@@ -98,7 +98,7 @@ const EsriMap = inject("DataStore")(
 
               const codeFour = {
                 type: "simple-fill", //autocast as new SimpleFillSymbol()
-                color: [128, 128, 128, 1], //gray
+                color: '#D0CFD4', //gray
                 style: "solid",
                 outline: {
                   // autocasts as new SimpleLineSymbol()
