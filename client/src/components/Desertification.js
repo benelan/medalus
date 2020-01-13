@@ -57,7 +57,9 @@ class About extends Component {
 
                        
                     </Row>
-                    <LazyHero opacity="0" imageSrc={process.env.PUBLIC_URL + './wildfires.png'}></LazyHero>
+                    <a href="https://www.fire.ca.gov/incidents/2019/" target="_blank" rel="noopener noreferrer">
+                        <LazyHero opacity="0" imageSrc={process.env.PUBLIC_URL + './wildfires.png'}></LazyHero>
+                    </a>
                     <p><i>-data provided by the California Department of Forestry and Fire Protection</i></p>
                 </Col>
                 
