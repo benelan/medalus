@@ -55,7 +55,6 @@ class About extends Component {
                             <p><i>data provided by cnn.com</i></p>
                         </Col>
 
-
                     </Row>
                     <Row><Col md={12}>
                         <a href="https://www.fire.ca.gov/incidents/2019/" width="100%" target="_blank" rel="noopener noreferrer">
@@ -63,11 +62,8 @@ class About extends Component {
                         </a>
                         <p><i>-data provided by the California Department of Forestry and Fire Protection</i></p>
                     </Col></Row>
-
                 </Col>
-
             </Row>
-
         );
     }
 }
