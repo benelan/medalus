@@ -14,6 +14,7 @@ const NavBar = () => {
                 <NavbarToggler onClick={toggleNavbar} className="mr-2" />
                 <Collapse isOpen={!collapsed} navbar>
                     <Nav navbar>
+                        <p>We proactively prepare communities to identify environmentally sensitive areas and prime them for success using The Science of Where.</p>
                         <NavItem>
                             <NavLink style={{ color: 'white' }} href="https://github.com/benelan/medalus/">Github</NavLink>
                         </NavItem>
@@ -73,8 +74,8 @@ const NavBar = () => {
                 </Collapse>
             </Navbar>
             <div className="ui text container">
-                <h1 className="ui inverted header">
-                    Medalus
+                <h1 className="ui inverted header" style={{ font: '25px' }}>
+                    MEDALUS
                 </h1>
             </div>
         </div>
