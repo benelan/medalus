@@ -16,7 +16,7 @@ import sys
 from datetime import datetime
 
 # Check out any necessary licenses
-
+print ("starting arcpy clip script")
 # Set overwrite
 arcpy.env.overwriteOutput = True
 
@@ -29,6 +29,7 @@ outgeo_name = "ClippedRasters.gdb"
 outGeoJSONFolder_name = "GeoJSONs"
 
 
+print ("setting up output locations")
 #checking and creating a filegeodatabase where the clipped rasters and subsequent feature class will be created
 if arcpy.Exists(outgeo_name):
     arcpy.Delete_management(outgeo_name)
@@ -46,7 +47,7 @@ else:
     
 
 #Set workspsace to a filegeodatabase with the final suitability rasters for each year and the county feature class
-arcpy.env.workspace = r"C:\Users\ben10334\Desktop\medalus\server\models\Dessertification.gdb"
+arcpy.env.workspace = r"C:\Users\ben10334\Desktop\medalus\server\models\Desertification.gdb"
 #print (arcpy.env.workspace)
 
 #variable for the county feature class
@@ -137,4 +138,4 @@ for raster in rasters:
         arcpy.conversion.FeaturesToJSON(finalDestFC,  finalDestGeoJson , "NOT_FORMATTED", "NO_Z_VALUES", "NO_M_VALUES", "GEOJSON", "WGS84", "USE_FIELD_NAME")
         #print ("GeoJSON is done")
 
-print ("Finished")
+print ("Finished arcpy script")

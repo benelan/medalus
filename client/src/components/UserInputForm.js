@@ -11,7 +11,7 @@ const UserInputForm = inject("DataStore")(observer(
     class UserInputForm extends React.Component {
 
         componentDidMount() {
-            /*TODO: dynamically load the dropdown for counties */
+             /*TODO: dynamically load the dropdown for counties */
             this.loadSelectOptions();
         }
 
