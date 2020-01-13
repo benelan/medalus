@@ -13,8 +13,11 @@ class About extends Component {
                     <Row style={homeStyle}>
 
                         <Col md={5}>
-                            <h4 className="text-center">Getting Started</h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sed velit dignissim sodales ut eu sem integer vitae. Cursus mattis molestie a iaculis at erat pellentesque adipiscing. Eu augue ut lectus arcu. A erat nam at lectus urna duis convallis convallis. Fringilla phasellus faucibus scelerisque eleifend donec pretium. Id aliquet risus feugiat in ante metus dictum. Pellentesque sit amet porttitor eget dolor morbi non. At lectus urna duis convallis convallis tellus. Felis eget velit aliquet sagittis. Tempus imperdiet nulla malesuada pellentesque elit eget gravida cum. In nulla posuere sollicitudin aliquam ultrices sagittis orci a. Platea dictumst quisque sagittis purus. Neque gravida in fermentum et. Non blandit massa enim nec dui nunc mattis. Viverra aliquet eget sit amet.</p>
+                            <h4 className="text-center">Medalus</h4>
+                            <h5 className="text-center"><i>Mediterranean Desertification and Land Use</i></h5>
+                            <p>Desertification indicatiors can demonstrate that desertification has already reached to an irreversible point. However, the indicators can demonstrate a potential risk
+                                of desertification in certain areas where there is still time to reverse the trend. The Medalus method can help guide organization to focus on the regions 
+                            </p>
 
                             <p>Nisl nisi scelerisque eu ultrices vitae auctor eu augue. Semper risus in hendrerit gravida rutrum quisque non tellus orci. Ut diam quam nulla porttitor. Justo eget magna fermentum iaculis eu non diam. Eget velit aliquet sagittis id consectetur. Sed risus pretium quam vulputate dignissim suspendisse. Volutpat ac tincidunt vitae semper quis lectus nulla at. Urna porttitor rhoncus dolor purus non. Cursus euismod quis viverra nibh. Cursus in hac habitasse platea dictumst quisque sagittis purus. Diam donec adipiscing tristique risus. Lorem ipsum dolor sit amet consectetur adipiscing. Habitasse platea dictumst vestibulum rhoncus est pellentesque. Eu consequat ac felis donec et. In hendrerit gravida rutrum quisque non tellus orci ac auctor.</p>
                             

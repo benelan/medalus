@@ -6,6 +6,7 @@ import EsriMap from './components/EsriMap';
 import { Provider } from 'mobx-react'
 import DataStore from './store/DataStore'
 import Hero from './components/Hero';
+import Desert from './components/Desertification'
 
 const App = () => {
   return (
@@ -13,9 +14,12 @@ const App = () => {
       <NavBar />
       <EsriMap />
       <UserInputForm />
-
-      <About />
+      
+      <Desert />
       <Hero />
+      <About />
+      
+      
     </Provider>
   );
 }

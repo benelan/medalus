@@ -88,7 +88,8 @@ const EsriMap = inject("DataStore")(
             //   "https://bsvensson.github.io/various-tests/geojson/usgs-earthquakes-06182019.geojson";
             // const url =
             //   "https://kghime.esri.com/geojsonHack/SanDiego_2011.geojson";
-            const url = "https://kghime.esri.com/geojsonHack/output.geojson";
+           // const url = "https://kghime.esri.com/geojsonHack/output.geojson";
+            const url = "http://belan2.esri.com:8080/yuba.geojson";
 
             console.log(url);
             const template = {
@@ -117,7 +118,7 @@ const EsriMap = inject("DataStore")(
 
             const view = new MapView({
               container: "viewDiv",
-              center: [-122.189964, 37.830697],
+              center: [-121.6169, 39.1404],
               zoom: 10,
               map: map
             });
@@ -127,11 +128,11 @@ const EsriMap = inject("DataStore")(
               container: "timeSlider",
               //view: view,
               //mode: "cumulative-from-start",
-              playRate: 50,
+              playRate: 100,
               stops: {
                 interval: {
                   value: 1,
-                  unit: "days"
+                  unit: "months"
                 }
               }
             });
