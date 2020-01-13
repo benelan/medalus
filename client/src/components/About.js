@@ -36,7 +36,9 @@ class About extends Component {
                     <Col md={6}>
                     <h4 className="text-center">SQI</h4>
                         <h5 className="text-center"><i>SQI = (S x Dp x B x T x Dr)<sup>1/5</sup></i></h5>
-                        <p>Commodo viverra maecenas accumsan lacus vel facilisis volutpat. Id cursus metus aliquam eleifend mi in nulla posuere sollicitudin. Venenatis lectus magna fringilla urna porttitor rhoncus dolor purus non. Lorem ipsum dolor sit amet consectetur adipiscing. Aliquet sagittis id consectetur purus ut. Quam vulputate dignissim suspendisse in est ante. Elementum nisi quis eleifend quam. Tempor id eu nisl nunc. Integer enim neque volutpat ac tincidunt vitae. Arcu felis bibendum ut tristique et. Dictum sit amet justo donec enim diam vulputate.</p>
+                        <p><b>Soil Quality Index</b> - depends on the <b>(S)Slope, (Dp)Depth, (B)Brightness (Albedo), (T)Texture, and (Dr)Drainage.</b> Soil is an important parameter consisting of numerous
+                        key factors. The topotgraphical slope, soil depth, lithological formation (Albedo), soil texture, and drainage data were all provided by Esri's Living Atlas data. The data
+                        was in the form of raster data via Image Services. </p>
                     </Col>  
                 </Row>
                 <img src={process.env.PUBLIC_URL + './div.PNG'} alt="divider" style={center} ></img>
@@ -44,7 +46,9 @@ class About extends Component {
                     <Col md={6}>
                         <h4 className="text-center">VQI</h4>
                         <h5 className="text-center"><i>VQI = (Ep x Dr x Pc)<sup>1/3</sup></i></h5>
-                        <p>Commodo viverra maecenas accumsan lacus vel facilisis volutpat. Id cursus metus aliquam eleifend mi in nulla posuere sollicitudin. Venenatis lectus magna fringilla urna porttitor rhoncus dolor purus non. Lorem ipsum dolor sit amet consectetur adipiscing. Aliquet sagittis id consectetur purus ut. Quam vulputate dignissim suspendisse in est ante. Elementum nisi quis eleifend quam. Tempor id eu nisl nunc. Integer enim neque volutpat ac tincidunt vitae. Arcu felis bibendum ut tristique et. Dictum sit amet justo donec enim diam vulputate.</p>
+                        <p><b>Vegetation Quality Index</b> - depends on the <b>(Ep)Erosion protection, (Dr)Drought resistance, (Pc)Plant cover (Albedo)</b> Soil is an important parameter consisting of numerous
+                        key factors. The topotgraphical slope, soil depth, lithological formation (Albedo), soil texture, and drainage data were all provided by Esri's Living Atlas data. The data
+                        was in the form of raster data via Image Services. </p>
 
                     </Col>
                     <Col md={6}>
