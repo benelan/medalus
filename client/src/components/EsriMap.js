@@ -8,6 +8,18 @@ import "./map.css";
 const EsriMap = inject("DataStore")(
   observer(
     class EsriMap extends Component {
+
+      state = {
+        map: null,
+        view: null,
+        geoJSONLayer: null,
+        timeSlider: null,
+        layerList: null,
+        layerListExpand: null,
+        geojsonLayerView: null,
+        handle: null
+      }
+
       componentDidMount() {
         loadCss();
         this.loadMap();
@@ -18,7 +30,7 @@ const EsriMap = inject("DataStore")(
         //reload the map is necessary
         if (this.props.DataStore.reloadMap) {
           this.props.DataStore.setReloadMap(false);
-          this.loadMap();
+          this.loadMap()
         }
       };
 
@@ -34,6 +46,7 @@ const EsriMap = inject("DataStore")(
           "esri/layers/ImageryLayer",
           "esri/layers/MapImageLayer",
           "esri/widgets/LayerList",
+          "esri/widgets/Expand",
           "esri/core/watchUtils"
         ])
           .then(
@@ -45,10 +58,9 @@ const EsriMap = inject("DataStore")(
               ImageryLayer,
               MapImageLayer,
               LayerList,
+              Expand,
               watchUtils
             ]) => {
-              let geojsonLayerView;
-              let handle;
 
               //symbology for rendering unique values based on Grid Codes
 
@@ -129,13 +141,12 @@ const EsriMap = inject("DataStore")(
               // const url = "https://kghime.esri.com/geojsonHack/output.geojson";
               const url = "http://belan2.esri.com:8080/output.geojson";
 
-              console.log(url);
               const template = {
                 title: "{Name}",
                 content: `<p>The county of <b>{Name}</b> has a classification of <b>{gridcode}</b> in this region</p>`
               };
 
-              const geoJSONLayer = new GeoJSONLayer({
+             that.state.geoJSONLayer = new GeoJSONLayer({
                 url: url,
                 popupTemplate: template,
                 renderer: renderer,
@@ -148,23 +159,21 @@ const EsriMap = inject("DataStore")(
                 }
               });
 
-              const map = new Map({
+              that.state.map = new Map({
                 basemap: "dark-gray",
-                layers: [geoJSONLayer]
+                layers: [that.state.geoJSONLayer]
               });
 
-              const view = new MapView({
+              that.state.view = new MapView({
                 container: "viewDiv",
                 center: [-121.6169, 39.1404],
                 zoom: 4,
-                map: map
+                map: that.state.map
               });
 
               //Time Slider widget
-              var timeSlider = new TimeSlider({
+              that.state.timeSlider = new TimeSlider({
                 container: "timeSlider",
-                //view: view,
-                //mode: "cumulative-from-start",
                 playRate: 1000,
                 stops: {
                   interval: {
@@ -173,7 +182,16 @@ const EsriMap = inject("DataStore")(
                   }
                 }
               });
-              view.ui.add(timeSlider, "manual");
+
+              // const timeSliderExpand = new Expand({
+              //   expandIconClass: "esri-icon-clock",
+              //   expandTooltip: "Time Slider",
+              //   view: view,
+              //   content: timeSlider,
+              //   expanded: true
+              // });
+              // view.ui.add(timeSliderExpand, "top-right");
+              that.state.view.ui.add(that.state.timeSlider, "bottom-left");
 
               //var featureCount = document.getElementById("feature-count");
               //var county = document.getElementById("county");
@@ -181,8 +199,8 @@ const EsriMap = inject("DataStore")(
               const refreshBtn = document.getElementById("refreshDiv");
               const resetBtn = document.getElementById("resetBtn");
 
-              view.ui.add(refreshBtn, "manual");
-              view.ui.add(resetBtn, "bottom-right");
+              that.state.view.ui.add(refreshBtn, "manual");
+              that.state.view.ui.add(resetBtn, "bottom-right");
 
               //view.ui.add(featureCount, "top-right");
               //view.ui.add(selectCountyTitle, "top-right");
@@ -204,20 +222,20 @@ const EsriMap = inject("DataStore")(
                       [extent.xmin, extent.ymin]
                     ]
                   };
-                  geojsonLayerView.filter = {
+                  that.state.geojsonLayerView.filter = {
                     geometry: polygon,
                     spatialRelationship: "intersects",
                     where: where
                   };
                 } else {
-                  geojsonLayerView.filter = {
+                  that.state.geojsonLayerView.filter = {
                     where: where
                   };
                 }
               };
 
               resetBtn.onclick = function() {
-                geojsonLayerView.filter = { where: "1=1" };
+                that.state.geojsonLayerView.filter = { where: "1=1" };
               };
 
               // function displayImageService() {
@@ -266,7 +284,7 @@ const EsriMap = inject("DataStore")(
                   "https://jaiswal.esri.com/server/rest/services/Hackathon/Desertification2018/MapServer"
               });
 
-              map.addMany([
+              that.state.map.addMany([
                 imgServiceLayer,
                 imgServiceLayer1,
                 imgServiceLayer2,
@@ -278,13 +296,19 @@ const EsriMap = inject("DataStore")(
                 imgServiceLayer8
               ]);
 
-              var layerList = new LayerList({
-                view: view
+              that.state.layerList = new LayerList({
+                view: that.state.view
               });
               // Adds widget below other elements in the top left corner of the view
-              view.ui.add(layerList, {
-                position: "top-right"
+              that.state.layerListExpand = new Expand({
+                expandIconClass: "esri-icon-layers",
+                expandTooltip: "Image Services for each year",
+                view: that.state.view,
+                content: that.state.layerList,
+                expanded: false
               });
+              that.state.view.ui.add(that.state.layerListExpand, "top-right");
+              
 
               //const imgServiceChkBox = document.getElementById("imageService");
               //view.ui.add(imgServiceChkBox, "top-right");
@@ -296,13 +320,13 @@ const EsriMap = inject("DataStore")(
               //     }
               //   };
 
-              view.when(() => {
-                view
-                  .whenLayerView(geoJSONLayer)
+              that.state.view.when(() => {
+                that.state.view
+                  .whenLayerView(that.state.geoJSONLayer)
                   .then(layerView => {
-                    geojsonLayerView = layerView;
-                    handle = watchUtils.watch(
-                      geojsonLayerView,
+                    that.state.geojsonLayerView = layerView;
+                    that.state.handle = watchUtils.watch(
+                      that.state.geojsonLayerView,
                       "updating",
                       () => {
                         //console.log("finished loading the layer!");
@@ -312,72 +336,34 @@ const EsriMap = inject("DataStore")(
                       }
                     );
 
-                    view.extent = geoJSONLayer.fullExtent; // zoom to extent
+                    that.state.view.extent = that.state.geoJSONLayer.fullExtent; // zoom to extent
                     //const start = new Date(2019, 4, 25);
-                    const start = geoJSONLayer.timeInfo.fullTimeExtent.start;
-                    const end = geoJSONLayer.timeInfo.fullTimeExtent.end;
+                    const start = that.state.geoJSONLayer.timeInfo.fullTimeExtent.start;
+                    const end = that.state.geoJSONLayer.timeInfo.fullTimeExtent.end;
 
-                    timeSlider.fullTimeExtent = {
+                    that.state.timeSlider.fullTimeExtent = {
                       start: start,
                       end: end
                     };
 
-                    timeSlider.values = [end, end];
+                    that.state.timeSlider.values = [end, end];
                   })
                   .catch(err => console.log("failed in layerview ", err));
               });
 
-              timeSlider.watch("timeExtent", function() {
-                geoJSONLayer.definitionExpression =
+              that.state.timeSlider.watch("timeExtent", function() {
+                that.state.geoJSONLayer.definitionExpression =
                   //"Year <= " + timeSlider.timeExtent.end.getTime();
-                  "Year <= " + timeSlider.timeExtent.end.getTime();
+                  "Year <= " + that.state.timeSlider.timeExtent.end.getTime();
 
-                geojsonLayerView.effect = {
+                that.state.geojsonLayerView.effect = {
                   filter: {
-                    timeExtent: timeSlider.timeExtent,
-                    geometry: view.extent
+                    timeExtent: that.state.timeSlider.timeExtent,
+                    geometry: that.state.view.extent
                   }
                   //excludedEffect: "grayscale(20%) opacity(12%)"
                 };
               });
-
-              // timeSlider.watch("timeExtent", function(value){
-              //     // update layer view filter to reflect current timeExtent
-              //     geojsonLayerView.filter = {
-              //       timeExtent: value
-              //     };
-              //   });
-
-              //Button click event on counting number of features
-              // featureCount.addEventListener("click", function() {
-              //   console.log("button clicked");
-
-              //   view
-              //     .whenLayerView(geoJSONLayer)
-              //     .then(function(layerView) {
-              //       return layerView.queryFeatureCount();
-              //     })
-              //     .then(function(count) {
-              //       console.log(count); // prints the total number of client-side graphics to the console
-              //     });
-              // });
-
-              //Dropdown selection event to select a county and map over it
-              // var highlight;
-              // county.addEventListener("change", function(event) {
-              //   console.log(event);
-              //   var highlight;
-              //   view.whenLayerView(geoJSONLayer).then(function(layerView) {
-              //     var query = geoJSONLayer.createQuery();
-              //     query.where = "OBJECTID = 872";
-              //     geoJSONLayer.queryFeatures(query).then(function(result) {
-              //       if (highlight) {
-              //         highlight.remove();
-              //       }
-              //       highlight = layerView.highlight(result.features);
-              //     });
-              //   });
-              // });
             }
           ) //end of module
           .catch(err => {
@@ -412,9 +398,6 @@ const EsriMap = inject("DataStore")(
           <Row id="map">
             <Col md={12}>
               <div id="viewDiv" style={mD}>
-                <div id="timeSlider"></div>
-
-                <input id="imageService" type="checkbox" />
                 <div
                   id="refreshDiv"
                   style={{
@@ -449,19 +432,6 @@ const EsriMap = inject("DataStore")(
                 >
                   Reset
                 </button>
-                {/* <button id="feature-count" className="esri-widget">
-              Number of Features
-            </button>
-            <span id="select-county-title">Select a county:</span>
-            <br />
-            <select id="county" className="esri-select">
-              <option value="San Bernardino">San Bernardino</option>
-              <option value="Los Angeles">Los Angeles</option>
-              <option value="San Francisco">San Francisco</option>
-              <option value="Santa Clara">Santa Clara</option>
-              <option value="San Diego">San Diego</option>
-              
-            </select> */}
               </div>
             </Col>
           </Row>

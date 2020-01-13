@@ -39,9 +39,9 @@ class About extends Component {
                         <p><b>Soil Quality Index</b> - depends on the <b>(S)Slope, (Dp)Depth, (B)Brightness (Albedo), (T)Texture, and (Dr)Drainage.</b> Soil is an important parameter consisting of numerous
                         key factors. The topographical slope, soil depth, lithological formation (Albedo), soil texture, and drainage data were all provided by Esri's Living Atlas data. The data
                         was in the form of raster data via Image Services. </p>
-                    </Col>  
+                    </Col>
                 </Row>
-                <img src={process.env.PUBLIC_URL + './div.PNG'} alt="divider" style={center} ></img>
+                <img src={process.env.PUBLIC_URL + './div.PNG'} style={center} alt="__________"></img>
                 <Row>
                     <Col md={6}>
                         <h4 className="text-center">VQI</h4>
@@ -55,7 +55,7 @@ class About extends Component {
                         <img src={process.env.PUBLIC_URL + './VQI.PNG'} alt="VQI" className="float-right"></img>
                     </Col>
                 </Row>
-                <img src={process.env.PUBLIC_URL + './div.PNG'} alt="divider" style={center} ></img>
+                <img src={process.env.PUBLIC_URL + './div.PNG'} style={center} alt="__________"></img>
                 <Row>
                     <Col md={6}>
                         <img src={process.env.PUBLIC_URL + './CQI.PNG'} alt="CQI"></img>
@@ -71,7 +71,7 @@ class About extends Component {
                         
                     </Col>
                 </Row>
-                <img src={process.env.PUBLIC_URL + './div.PNG'} alt="divider" style={center} ></img>
+                <img src={process.env.PUBLIC_URL + './div.PNG'} style={center} alt="__________"></img>
                 <Row>
                     <Col md={6}>
                         <h4 className="text-center">MQI</h4>
@@ -87,7 +87,7 @@ class About extends Component {
                         <img src={process.env.PUBLIC_URL + './MQI.PNG'} alt="MQI" className="float-right"></img>
                     </Col>
                 </Row>
-                <img src={process.env.PUBLIC_URL + './div.PNG'} alt="divider" style={center} ></img>
+                <img src={process.env.PUBLIC_URL + './div.PNG'} style={center} alt="__________"></img>
                 <Row>
                     <Col md={6}>
                         <img src={process.env.PUBLIC_URL + './Desertificate2018.PNG'} alt="Desertificate2018"></img>
@@ -101,7 +101,7 @@ class About extends Component {
                         prior to the last couple years. This shows the regions that had large fires in 2017 and 2018, which resulted in the most destructive years of wildfires in 2017 and 2018 as we explained above.</p>
                     </Col>
                 </Row>
-                <img src={process.env.PUBLIC_URL + './div.PNG'} style={center}></img>
+                <img src={process.env.PUBLIC_URL + './div.PNG'} style={center} alt="__________"></img>
             </Row>
         );
     }
