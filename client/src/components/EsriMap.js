@@ -14,7 +14,7 @@ const EsriMap = inject("DataStore")(
 
       onClickHandler = () => {
         this.props.DataStore.setClicked(this.props.DataStore.clicked);
-      }
+      };
 
       loadMap() {
         const that = this;
@@ -25,9 +25,10 @@ const EsriMap = inject("DataStore")(
           "esri/views/MapView",
           "esri/layers/GeoJSONLayer",
           "esri/widgets/TimeSlider",
+          "esri/layers/ImageryLayer",
           "esri/core/watchUtils"
         ])
-          .then(([Map, MapView, GeoJSONLayer, TimeSlider, watchUtils]) => {
+          .then(([Map, MapView, GeoJSONLayer, TimeSlider, ImageryLayer, watchUtils]) => {
             let geojsonLayerView;
             let handle;
 
@@ -144,6 +145,7 @@ const EsriMap = inject("DataStore")(
 
             view.ui.add(refreshBtn, "manual");
             view.ui.add(resetBtn, "bottom-right");
+
             //view.ui.add(featureCount, "top-right");
             //view.ui.add(selectCountyTitle, "top-right");
             //view.ui.add(county, "top-right");
@@ -180,6 +182,30 @@ const EsriMap = inject("DataStore")(
               geojsonLayerView.filter = { where: "1=1" };
             };
 
+            // function displayImageService() {
+            //   if (document.getElementById("imageService").checked) {
+            //     map.add();
+            //   } else {
+            //     map.remove();
+            //   }
+            // }
+
+            const imgServiceLayer = new ImageryLayer({
+                url:
+                  "https://sampleserver6.arcgisonline.com/arcgis/rest/services/NLCDLandCover2001/ImageServer",
+                format: "jpgpng" // server exports in either jpg or png format
+              });
+            
+            const imgServiceChkBox = document.getElementById("imageService");
+            view.ui.add(imgServiceChkBox, "top-right");
+            imgServiceChkBox.onchange = function() {
+              if (imgServiceChkBox.checked) {
+                map.add(imgServiceLayer);
+              } else {
+                map.remove(imgServiceLayer);
+              }
+            };
+
             view.when(() => {
               view
                 .whenLayerView(geoJSONLayer)
@@ -190,26 +216,28 @@ const EsriMap = inject("DataStore")(
                     "updating",
                     () => {
                       console.log("finished loading the layer!");
-                      that.props.DataStore.setLoaded(that.props.DataStore.loaded);
+                      that.props.DataStore.setLoaded(
+                        that.props.DataStore.loaded
+                      );
                       //const start = geoJSONLayer.timeInfo.fullTimeExtent.start;
                     }
                   );
 
                   //const start = new Date(2019, 4, 25);
-                 const start = geoJSONLayer.timeInfo.fullTimeExtent.start;
-                //   console.log(start);
-                //   const end = geoJSONLayer.timeInfo.fullTimeExtent.end;
-                //   console.log(end);
-                    timeSlider.fullTimeExtent = {
-                      start: start,
-                      end: geoJSONLayer.timeInfo.fullTimeExtent.end
-                    };
+                  const start = geoJSONLayer.timeInfo.fullTimeExtent.start;
+                  //   console.log(start);
+                  //   const end = geoJSONLayer.timeInfo.fullTimeExtent.end;
+                  //   console.log(end);
+                  timeSlider.fullTimeExtent = {
+                    start: start,
+                    end: geoJSONLayer.timeInfo.fullTimeExtent.end
+                  };
 
-                    const end = new Date(start);
-                    end.setDate(end.getDate() + 1);
-                //   const end = geoJSONLayer.timeInfo.fullTimeExtent.end;
-                //   console.log(start);
-                //   console.log(end);
+                  const end = new Date(start);
+                  end.setDate(end.getDate() + 1);
+                  //   const end = geoJSONLayer.timeInfo.fullTimeExtent.end;
+                  //   console.log(start);
+                  //   console.log(end);
                   timeSlider.values = [start, end];
                 })
                 .catch(err => console.log("failed in layerview ", err));
@@ -287,9 +315,12 @@ const EsriMap = inject("DataStore")(
           ? console.log("extent", this.props.DataStore.inputGeometry)
           : console.log("no extent");
 
-        let refreshVisibility = this.props.DataStore.clicked ? {visibility: 'visible'} : {visibility: 'hidden'};
-        let loaderVisibility = this.props.DataStore.loaded ? {visibility: 'hidden'} : {visibility : 'visible'};
-
+        let refreshVisibility = this.props.DataStore.clicked
+          ? { visibility: "visible" }
+          : { visibility: "hidden" };
+        let loaderVisibility = this.props.DataStore.loaded
+          ? { visibility: "hidden" }
+          : { visibility: "visible" };
 
         return (
           <Row id="map">
@@ -343,6 +374,8 @@ const EsriMap = inject("DataStore")(
               
             </select> */}
                 <div id="timeSlider"></div>
+
+                <input id="imageService" type="checkbox" />
               </div>
             </Col>
           </Row>
