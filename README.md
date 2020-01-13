@@ -134,7 +134,7 @@ Output raster ESAI with legends for your reference:
 
 ![ESAI](https://github.com/benelan/medalus/blob/master/client/public/Desertificate2018.PNG)
 
-**Use in Application**
+**Use In the Application**
 
 Once the ESAI data is ready, copy the gdb to the [server/models](https://github.com/benelan/medalus/tree/master/server/models) directory. Change the arcpy script in [server/models/python/clip.py](https://github.com/benelan/medalus/blob/master/server/models/python/clip.py) to paths specific to your machine. Then, follow the instructions in Getting Started to get the app up and running. Once the app is running, you can choose a county, ie "Yuba" or "San Diego" and the node server will call the arcpy to do following steps: 
 
