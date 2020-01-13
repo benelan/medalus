@@ -35,7 +35,6 @@ const UserInputForm = inject("DataStore")(observer(
                 .then((result) => {
                     alert("GeoJSON layer has been created successfully!");
                     this.props.DataStore.setReloadMap(true);
-                    this.props.DataStore.setLoaded(true);
                     console.log('result: ', result)
                 })
                 .catch(err => console.log('failed to fetch: ', err));
@@ -64,7 +63,6 @@ const UserInputForm = inject("DataStore")(observer(
                                     const countyName = values.county.length > 0 ? values.county.replace(/\s/g, '') : values.county;
                                     if (!!countyName && this.props.DataStore.county !== countyName) {
                                         this.queryAPI(countyName);
-                                        this.props.DataStore.setLoaded(false);
                                     }
                                     this.props.DataStore.setWhere(values.where);
                                     this.props.DataStore.setCounty(countyName);

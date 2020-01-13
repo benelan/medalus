@@ -337,9 +337,9 @@ const EsriMap = inject("DataStore")(
                       "updating",
                       () => {
                         //console.log("finished loading the layer!");
-                        // that.props.DataStore.setLoaded(
-                        //   that.props.DataStore.loaded
-                        // );
+                        that.props.DataStore.setLoaded(
+                          that.props.DataStore.loaded
+                        );
                       }
                     );
 
