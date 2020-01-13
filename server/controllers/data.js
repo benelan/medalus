@@ -1,6 +1,7 @@
 const express = require('express')
   , router = express.Router()
   , path = require('path')
+  , cp = require("child_process")
   , dm = require('../models/merge');
 
 const appDir = path.dirname(require.main.filename);
@@ -12,28 +13,30 @@ router.get('/api/mergeData', (req, res) => {
 
 
 router.get('/api/getData', (req, res) => {
-  const child = require("child_process").spawnSync;
-  var process = child('python', [appDir + "\\models\\python\\clip.py",
-  req.query.county]);
+  // Amador
+  // Yuba
+  var spawn = cp.spawn('python', [appDir + "\\models\\python\\clip.py",
+  req.query.county],
+  {
+    cwd: process.cwd(),
+    env: process.env,
+    stdio: [process.stdin, process.stdout, process.stderr],
+    encoding: 'utf-8'
+});
 
-  //Takes stdout data from script which executed 
-  //with arguments and logs it
-//   process.stdout.on('data', function(data) { 
-//     res.send(data.toString()); 
-// } ) 
+ spawn.on('exit', function(exit) {
+    console.log('exited with code: ' + exit)
+    dm.mergeGeoJSON();
+    console.log("geojsons merged");
+    res.json({success: exit})
+  })
 
-//  process.on('exit', function(exit) {
-//     console.log('exited with code: ' + exit)
-//     dm.mergeGeoJSON();
-//     console.log("geojsons merged");
-//   })
-
-  var errorText = process.stderr.toString().trim();
-
-	if (errorText) {
-	  console.log('Fatal error from `git log`.  You must have one commit before deploying.');
-	  throw new Error(errorText);
-	}
+  // for sync testing
+  // console.log(String(cp.stdout));
+  // var errorText = String(cp.stderr);
+	// if (errorText) {
+	//   throw new Error(errorText);
+	// }
 });
 
 module.exports = router

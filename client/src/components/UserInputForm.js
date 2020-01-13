@@ -14,7 +14,7 @@ const UserInputForm = inject("DataStore")(observer(
         }
 
         queryAPI = (dataObj) => {
-            let url = "http://belan2.esri.com:8080/api/getData?f=json";
+            let url = "http://belan2.esri.com:8080/api/getData";
 
             var query = Object.keys(dataObj)
                 .map(k => encodeURIComponent(k) + '=' + encodeURIComponent(dataObj[k]))
@@ -52,7 +52,7 @@ const UserInputForm = inject("DataStore")(observer(
                                     this.props.DataStore.setInputGeometry(values.extent);
                                     this.props.DataStore.setClicked(this.props.DataStore.clicked);
                                     //query our api for the python script
-                                    //queryAPI(values.county);
+                                   // this.queryAPI(values.county);
                                     console.log(JSON.stringify(values, null, 2));
                                     setSubmitting(false);
                                 }, 400);
