@@ -7,7 +7,7 @@ class DataStore {
     outFields = '';
     returnGeometry = '';
     clicked = false;
-    loaded = false;
+    loaded = true;
     options = [];
     reloadMap = false;
 
@@ -31,7 +31,7 @@ class DataStore {
         this.clicked = !x;
     }
     setLoaded(x) {
-        this.loaded = !x;
+        this.loaded = x;
     }
     setOptions(x) {
         this.options = x;
