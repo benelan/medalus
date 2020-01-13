@@ -1,0 +1,178 @@
+{
+    "items":
+    [{
+        "name": "Alameda",
+        "id": 0
+    },{
+        "name": "Alpine",
+        "id": 1
+    },{
+        "name": "Amador",
+        "id": 2
+    },{
+        "name": "Butte",
+        "id": 3
+    },{
+        "name": "Calaveras",
+        "id": 4
+    },{
+        "name": "Colusa",
+        "id": 5
+    },{
+        "name": "Contra Costa",
+        "id": 6
+    },{
+        "name": "Del Norte",
+        "id": 7
+    },{
+        "name": "El Dorado",
+        "id": 8
+    },{
+        "name": "Fresno",
+        "id": 9
+    },{
+        "name": "Glenn",
+        "id": 10
+    },{
+        "name": "Humboldt",
+        "id": 11
+    },{
+        "name": "Imperial",
+        "id": 12
+    },{
+        "name": "Inyo",
+        "id": 13
+    },{
+        "name": "Kern",
+        "id": 14
+    },{
+        "name": "Kings",
+        "id": 15
+    },{
+        "name": "Lake",
+        "id": 16
+    },{
+        "name": "Lassen",
+        "id": 17
+    },{
+        "name": "Los Angeles",
+        "id": 18
+    },{
+        "name": "Madera",
+        "id": 19
+    },{
+        "name": "Marin",
+        "id": 20
+    },{
+        "name": "Mariposa",
+        "id": 21
+    },{
+        "name": "Mendocino",
+        "id": 22
+    },{
+        "name": "Merced",
+        "id": 23
+    },{
+        "name": "Modoc",
+        "id": 24
+    },{
+        "name": "Mono",
+        "id": 25
+    },{
+        "name": "Monterey",
+        "id": 26
+    },{
+        "name": "Napa",
+        "id": 27
+    },{
+        "name": "Nevada",
+        "id": 28
+    },{
+        "name": "Orange",
+        "id": 29
+    },{
+        "name": "Placer",
+        "id": 30
+    },{
+        "name": "Plumas",
+        "id": 31
+    },{
+        "name": "Riverside",
+        "id": 32
+    },{
+        "name": "Sacramento",
+        "id": 33
+    },{
+        "name": "San Benito",
+        "id": 34
+    },{
+        "name": "San Bernardino",
+        "id": 35
+    },{
+        "name": "San Diego",
+        "id": 36
+    },{
+        "name": "San Francisco",
+        "id": 37
+    },{
+        "name": "San Joaquin",
+        "id": 38
+    },{
+        "name": "San Luis Obispo",
+        "id": 39
+    },{
+        "name": "San Mateo",
+        "id": 40
+    },{
+        "name": "Santa Barbara",
+        "id": 41
+    },{
+        "name": "Santa Clara",
+        "id": 42
+    },{
+        "name": "Santa Cruz",
+        "id": 43
+    },{
+        "name": "Shasta",
+        "id": 44
+    },{
+        "name": "Sierra",
+        "id": 45
+    },{
+        "name": "Siskiyou",
+        "id": 46
+    },{
+        "name": "Solano",
+        "id": 47
+    },{
+        "name": "Sonoma",
+        "id": 48
+    },{
+        "name": "Stanislaus",
+        "id": 49
+    },{
+        "name": "Sutter",
+        "id": 50
+    },{
+        "name": "Tehama",
+        "id": 51
+    },{
+        "name": "Trinity",
+        "id": 52
+    },{
+        "name": "Tulare",
+        "id": 53
+    },{
+        "name": "Tuolumne",
+        "id": 54
+    },{
+        "name": "Ventura",
+        "id": 55
+    },{
+        "name": "Yolo",
+        "id": 56
+    },{
+        "name": "Yuba",
+        "id": 57
+    }]
+}
