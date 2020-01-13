@@ -24,13 +24,11 @@ class About extends Component {
                 </Col>
                 <Row>
                     <Col md={6}>
-                        <h4 className="text-center">SQI</h4>
-                        <h5 className="text-center"><i>SQI = (S x Dp x B x T x Dr)<sup>1/5</sup></i></h5>
                         <img src={process.env.PUBLIC_URL + './SQI.PNG'} alt="SQI"></img>
-
                     </Col>
                     <Col md={6}>
-                        <p>SQI</p>
+                    <h4 className="text-center">SQI</h4>
+                        <h5 className="text-center"><i>SQI = (S x Dp x B x T x Dr)<sup>1/5</sup></i></h5>
                         <p>Commodo viverra maecenas accumsan lacus vel facilisis volutpat. Id cursus metus aliquam eleifend mi in nulla posuere sollicitudin. Venenatis lectus magna fringilla urna porttitor rhoncus dolor purus non. Lorem ipsum dolor sit amet consectetur adipiscing. Aliquet sagittis id consectetur purus ut. Quam vulputate dignissim suspendisse in est ante. Elementum nisi quis eleifend quam. Tempor id eu nisl nunc. Integer enim neque volutpat ac tincidunt vitae. Arcu felis bibendum ut tristique et. Dictum sit amet justo donec enim diam vulputate.</p>
                     </Col>
                 </Row>
@@ -39,23 +37,21 @@ class About extends Component {
                     <Col md={6}>
                         <h4 className="text-center">VQI</h4>
                         <h5 className="text-center"><i>VQI = (Ep x Dr x Pc)<sup>1/3</sup></i></h5>
-                        <img src={process.env.PUBLIC_URL + './VQI.PNG'} alt="VQI"></img>
+                        <p>Commodo viverra maecenas accumsan lacus vel facilisis volutpat. Id cursus metus aliquam eleifend mi in nulla posuere sollicitudin. Venenatis lectus magna fringilla urna porttitor rhoncus dolor purus non. Lorem ipsum dolor sit amet consectetur adipiscing. Aliquet sagittis id consectetur purus ut. Quam vulputate dignissim suspendisse in est ante. Elementum nisi quis eleifend quam. Tempor id eu nisl nunc. Integer enim neque volutpat ac tincidunt vitae. Arcu felis bibendum ut tristique et. Dictum sit amet justo donec enim diam vulputate.</p>
+
                     </Col>
                     <Col md={6}>
-                        <p>VQI</p>
-                        <p>Commodo viverra maecenas accumsan lacus vel facilisis volutpat. Id cursus metus aliquam eleifend mi in nulla posuere sollicitudin. Venenatis lectus magna fringilla urna porttitor rhoncus dolor purus non. Lorem ipsum dolor sit amet consectetur adipiscing. Aliquet sagittis id consectetur purus ut. Quam vulputate dignissim suspendisse in est ante. Elementum nisi quis eleifend quam. Tempor id eu nisl nunc. Integer enim neque volutpat ac tincidunt vitae. Arcu felis bibendum ut tristique et. Dictum sit amet justo donec enim diam vulputate.</p>
+                    <img src={process.env.PUBLIC_URL + './VQI.PNG'} alt="VQI" className="float-right"></img>
                     </Col>
                 </Row>
 
                 <Row>
                     <Col md={6}>
-                        <h4 className="text-center">CQI</h4>
-                        <h5 className="text-center"><i>CQI = (R x AI)<sup>1/2</sup></i></h5>
                         <img src={process.env.PUBLIC_URL + './CQI.PNG'} alt="CQI"></img>
-
                     </Col>
                     <Col md={6}>
-                        <p>CQI</p>
+                    <h4 className="text-center">CQI</h4>
+                        <h5 className="text-center"><i>CQI = (R x AI)<sup>1/2</sup></i></h5>
                         <p>Commodo viverra maecenas accumsan lacus vel facilisis volutpat. Id cursus metus aliquam eleifend mi in nulla posuere sollicitudin. Venenatis lectus magna fringilla urna porttitor rhoncus dolor purus non. Lorem ipsum dolor sit amet consectetur adipiscing. Aliquet sagittis id consectetur purus ut. Quam vulputate dignissim suspendisse in est ante. Elementum nisi quis eleifend quam. Tempor id eu nisl nunc. Integer enim neque volutpat ac tincidunt vitae. Arcu felis bibendum ut tristique et. Dictum sit amet justo donec enim diam vulputate.</p>
                     </Col>
                 </Row>
@@ -65,24 +61,24 @@ class About extends Component {
                     <Col md={6}>
                         <h4 className="text-center">MQI</h4>
                         <h5 className="text-center"><i>MQI = (Human pressure x Grazing pressure)<sup>1/2</sup></i></h5>
-                        <img src={process.env.PUBLIC_URL + './MQI.PNG'} alt="MQI"></img>
+                        <p>Commodo viverra maecenas accumsan lacus vel facilisis volutpat. Id cursus metus aliquam eleifend mi in nulla posuere sollicitudin. Venenatis lectus magna fringilla urna porttitor rhoncus dolor purus non. Lorem ipsum dolor sit amet consectetur adipiscing. Aliquet sagittis id consectetur purus ut. Quam vulputate dignissim suspendisse in est ante. Elementum nisi quis eleifend quam. Tempor id eu nisl nunc. Integer enim neque volutpat ac tincidunt vitae. Arcu felis bibendum ut tristique et. Dictum sit amet justo donec enim diam vulputate.</p>
                     </Col>
                     <Col md={6}>
-                        <p>MQI</p>
-                        <p>Commodo viverra maecenas accumsan lacus vel facilisis volutpat. Id cursus metus aliquam eleifend mi in nulla posuere sollicitudin. Venenatis lectus magna fringilla urna porttitor rhoncus dolor purus non. Lorem ipsum dolor sit amet consectetur adipiscing. Aliquet sagittis id consectetur purus ut. Quam vulputate dignissim suspendisse in est ante. Elementum nisi quis eleifend quam. Tempor id eu nisl nunc. Integer enim neque volutpat ac tincidunt vitae. Arcu felis bibendum ut tristique et. Dictum sit amet justo donec enim diam vulputate.</p>
+                    <img src={process.env.PUBLIC_URL + './MQI.PNG'} alt="MQI" className="float-right"></img>
+                        
                     </Col>
                 </Row>
 
                 <Row>
                     <Col md={6}>
 
-                        <h4 className="text-center">ESAI</h4>
-                        <h5 className="text-center"><i>ESAI = (SQI x CQI x VQI x MQI)<sup>1/4</sup></i></h5>
+                      
                         <img src={process.env.PUBLIC_URL + './Desertificate2018.PNG'} alt="Desertificate2018"></img>
 
                     </Col>
                     <Col md={6}>
-                        <p>ESAI</p>
+                    <h4 className="text-center">ESAI</h4>
+                        <h5 className="text-center"><i>ESAI = (SQI x CQI x VQI x MQI)<sup>1/4</sup></i></h5>
                         <p>Commodo viverra maecenas accumsan lacus vel facilisis volutpat. Id cursus metus aliquam eleifend mi in nulla posuere sollicitudin. Venenatis lectus magna fringilla urna porttitor rhoncus dolor purus non. Lorem ipsum dolor sit amet consectetur adipiscing. Aliquet sagittis id consectetur purus ut. Quam vulputate dignissim suspendisse in est ante. Elementum nisi quis eleifend quam. Tempor id eu nisl nunc. Integer enim neque volutpat ac tincidunt vitae. Arcu felis bibendum ut tristique et. Dictum sit amet justo donec enim diam vulputate.</p>
                     </Col>
                 </Row>
