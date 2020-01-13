@@ -39,6 +39,11 @@ class About extends Component {
                         <p><b>Soil Quality Index</b> - depends on the <b>(S)Slope, (Dp)Depth, (B)Brightness (Albedo), (T)Texture, and (Dr)Drainage.</b> Soil is an important parameter consisting of numerous
                         key factors. The topographical slope, soil depth, lithological formation (Albedo), soil texture, and drainage data were all provided by Esri's Living Atlas data. The data
                         was in the form of raster data via Image Services. </p>
+                        <ul>
+                            <img src={process.env.PUBLIC_URL + './greenLegend.png'} alt="green" /> 1 - High quality<br />
+                            <img src={process.env.PUBLIC_URL + './yellowLegend.png'} alt="yellow" /> 2 - Moderate quality<br />
+                            <img src={process.env.PUBLIC_URL + './redLegend.png'} alt="red" /> 3 - Low quality
+                        </ul>
                     </Col>
                 </Row>
                 <img src={process.env.PUBLIC_URL + './div.PNG'} style={center} alt="__________"></img>
@@ -50,6 +55,11 @@ class About extends Component {
                         intensity of soil erosion. It helps prevent soil erosion because plants slow down water as it flows through the land, allowing the rain to soak into the ground. Plant roots also hold the
                         soil in position to prevent soil from being swept away by wind or washed away with water.
                         <i> - National Department of Agricluture Directorate Agricultural Land and Resources Management</i></p>
+                        <ul>
+                            <img src={process.env.PUBLIC_URL + './greenLegend.png'} alt="green" /> 1 - High quality<br />
+                            <img src={process.env.PUBLIC_URL + './yellowLegend.png'} alt="yellow" /> 2 - Moderate quality<br />
+                            <img src={process.env.PUBLIC_URL + './redLegend.png'} alt="red" /> 3 - Low quality
+                        </ul>
                     </Col>
                     <Col md={6}>
                         <img src={process.env.PUBLIC_URL + './VQI.PNG'} alt="VQI" className="float-right"></img>
@@ -68,7 +78,11 @@ class About extends Component {
                         of soil erosion. Dramatic changes in the rainfall amounts and intensities correlates with the soil erosion rates. "Where rainfall amounts increase, erosion and runoff will increase
                         at an even greater rate."
                         <i>- Journal of Soil and Water Conservation</i></p>
-                        
+                        <ul>
+                            <img src={process.env.PUBLIC_URL + './greenLegend.png'} alt="green" /> 1 - High quality<br />
+                            <img src={process.env.PUBLIC_URL + './yellowLegend.png'} alt="yellow" /> 2 - Moderate quality<br />
+                            <img src={process.env.PUBLIC_URL + './redLegend.png'} alt="red" /> 3 - Low quality
+                        </ul>
                     </Col>
                 </Row>
                 <img src={process.env.PUBLIC_URL + './div.PNG'} style={center} alt="__________"></img>
@@ -82,6 +96,11 @@ class About extends Component {
                             such as coffee, cotton, soybean and wheat can worsen soil erosion. As the soil erodes, farmers move on to other regions, clear forests for more agriculture, and the cycle continues.</p>
                         <p><b>Overgrazing</b><br />Reduces ground cover which can prevent soil from absorbing rainfall effectively. This in turn also aharms soil microbes, which help fertilize the soil. Topsoil is exposed and can dry out.
                         <i>- World Wildlife Federation</i></p>
+                        <ul>
+                            <img src={process.env.PUBLIC_URL + './greenLegend.png'} alt="green" /> 1 - High quality<br />
+                            <img src={process.env.PUBLIC_URL + './yellowLegend.png'} alt="yellow" /> 2 - Moderate quality<br />
+                            <img src={process.env.PUBLIC_URL + './redLegend.png'} alt="red" /> 3 - Low quality
+                        </ul>
                     </Col>
                     <Col md={6}>
                         <img src={process.env.PUBLIC_URL + './MQI.PNG'} alt="MQI" className="float-right"></img>
@@ -99,6 +118,11 @@ class About extends Component {
                         <p><b>California's result for 2018</b><br />The map on the left demonstrates the high risks of desertification in California in 2018. For those familiar with California, one can see the the map is somewhat accurate to demonstrate regions
                         that are currently know to be potential risks for desertification. What is suprisising is the region of the National Forests. The map shows that event these regions are at a risk. This could be caused by the years of drought in California 
                         prior to the last couple years. This shows the regions that had large fires in 2017 and 2018, which resulted in the most destructive years of wildfires in 2017 and 2018 as we explained above.</p>
+                        <ul>
+                            <img src={process.env.PUBLIC_URL + './greenLegend.png'} alt="green" /> 1 - Potentially affected areas<br />
+                            <img src={process.env.PUBLIC_URL + './yellowLegend.png'} alt="yellow" /> 2 - Moderately fragile areas<br />
+                            <img src={process.env.PUBLIC_URL + './redLegend.png'} alt="red" /> 3 - Highly fragile areas
+                        </ul>
                     </Col>
                 </Row>
                 <img src={process.env.PUBLIC_URL + './div.PNG'} style={center} alt="__________"></img>
