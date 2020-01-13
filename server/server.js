@@ -14,4 +14,4 @@ app.use(express.static(path.join(__dirname, "models", "output")))
 //     res.sendFile(path.join(__dirname, '..', 'client', 'build', 'index.html'))
 // })
 var server = app.listen(port, () => console.log(`Listening on port ${port}`))
- server.timeout = 10000;
+ server.timeout = 2147483647; // max 32 bit signed integer
