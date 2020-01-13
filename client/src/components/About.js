@@ -15,11 +15,34 @@ class About extends Component {
                         <Col md={5}>
                             <h4 className="text-center">Medalus</h4>
                             <h5 className="text-center"><i>Mediterranean Desertification and Land Use</i></h5>
-                            <p>Desertification indicatiors can demonstrate that desertification has already reached to an irreversible point. However, the indicators can demonstrate a potential risk
+                            <p>Desertification indicatiors can demonstrate that desertification has already reached to an irreversible point. However, the indicators also demonstrate a potential risk
                                 of desertification in certain areas where there is still time to reverse the trend. The Medalus method can help guide organization to focus on the regions 
                             </p>
 
-                            <p>Nisl nisi scelerisque eu ultrices vitae auctor eu augue. Semper risus in hendrerit gravida rutrum quisque non tellus orci. Ut diam quam nulla porttitor. Justo eget magna fermentum iaculis eu non diam. Eget velit aliquet sagittis id consectetur. Sed risus pretium quam vulputate dignissim suspendisse. Volutpat ac tincidunt vitae semper quis lectus nulla at. Urna porttitor rhoncus dolor purus non. Cursus euismod quis viverra nibh. Cursus in hac habitasse platea dictumst quisque sagittis purus. Diam donec adipiscing tristique risus. Lorem ipsum dolor sit amet consectetur adipiscing. Habitasse platea dictumst vestibulum rhoncus est pellentesque. Eu consequat ac felis donec et. In hendrerit gravida rutrum quisque non tellus orci ac auctor.</p>
+                            <p>We searched for a method or model in the scientific community for a way to measure the desertification process, and that is when we found a few scholarly journals referencing
+                                the Medalus method. The journals used the method to measure desertification in Morocco, Serbia, Mongolia, and Algeria. We decided to use this method and the journals to measure
+                                desertification in the United States, in particular, California.
+                            </p>
+
+                            <h4 className="text-center">SQI</h4>
+                            <h5 className="text-center"><i>SQI = (S x Dp x B x T x Dr)<sup>1/5</sup></i></h5>
+                            <img src={process.env.PUBLIC_URL + './SQI.PNG'} alt="SQI"></img>
+
+                            <h4 className="text-center">VQI</h4>
+                            <h5 className="text-center"><i>VQI = (Ep x Dr x Pc)<sup>1/3</sup></i></h5>
+                            <img src={process.env.PUBLIC_URL + './VQI.PNG'} alt="VQI"></img>
+
+                            <h4 className="text-center">CQI</h4>
+                            <h5 className="text-center"><i>CQI = (R x AI)<sup>1/2</sup></i></h5>
+                            <img src={process.env.PUBLIC_URL + './CQI.PNG'} alt="CQI"></img>
+
+                            <h4 className="text-center">MQI</h4>
+                            <h5 className="text-center"><i>MQI = (Human pressure x Grazing pressure)<sup>1/2</sup></i></h5>
+                            <img src={process.env.PUBLIC_URL + './MQI.PNG'} alt="MQI"></img>
+
+                            <h4 className="text-center">ESAI</h4>
+                            <h5 className="text-center"><i>ESAI = (SQI x CQI x VQI x MQI)<sup>1/4</sup></i></h5>
+                            <img src={process.env.PUBLIC_URL + './Desertificate2018.PNG'} alt="Desertificate2018"></img>
                             
                             
                             <h4 className="text-center" style={{paddingTop: '20px'}}>Setting up the Data</h4>

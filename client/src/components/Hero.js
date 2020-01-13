@@ -6,7 +6,7 @@ const Hero = () => {
     return (
         <div>
             <LazyHero imageSrc={process.env.PUBLIC_URL + './desert-unsplash.jpg'}>
-                <h3>DSI = (VQI x SQI x CQI x MQI)<sup>1/4</sup></h3>
+                <h3>ESAI = (SQI x CQI x VQI x MQI)<sup>1/4</sup></h3>
             </LazyHero>
             <p><i>photo by Anthony Tuil from unsplash.com</i></p>
         </div>
