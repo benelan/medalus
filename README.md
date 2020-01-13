@@ -1,6 +1,11 @@
 # Medalus
 Hack The Map 4 project
 
+## Desertification
+Desertification refers to land degradation caused by climate change and human activity in arid, semi-arid, and dry sub-humid areas. The aim of this application is to map desertification-sensitive areas.  A total of 11 indices that affect desertification processes were identified and analyzed using a geographic information system. The Mediterranean desertification and land use approach (MEDALUS), which has been widely used in the Mediterranean regions due to its simplicity, flexibility and rapid implementation strategy, was applied. 
+
+The Mediterranean desertification and land use (MEDALUS) approach identifies environmentally sensitive areas (ESAs) through the Environmentally Sensitive Area Index (ESAI). The ESAI is implemented by considering several variables, i.e. physical (soil quality), environmental (vegetation quality), climatic (climate quality), and social (management quality) indicators. This index can be used to obtain an in-depth understanding of the parameters causing desertification threats at a certain locations. This approach is simple, robust, widely applicable, acceptable to new indicators and parameters and can be adjusted to several scale levels. 
+
 ## Getting Started
 To run the web app you must have [Node](https://nodejs.org/en/) installed. To change counties, you must also have the [ArcPy](https://pro.arcgis.com/en/pro-app/arcpy/main/arcgis-pro-arcpy-reference.htm) python path in your Environment Variables. With Node installed, navigate to the server folder of the app and type:
 
@@ -10,11 +15,6 @@ npm start
 ```
 
 The client application is prebuilt and will be served along with the server. If you wish to make changes, you will have to run the two lines above in the client folder. Then uncomment the <FOR PRODUCTION> section in [server/server.js](https://github.com/benelan/medalus/blob/master/server/server.js) and start up the server.
-
-## Desertification
-Desertification refers to land degradation caused by climate change and human activity in arid, semi-arid, and dry sub-humid areas. The aim of this application is to map desertification-sensitive areas.  A total of 11 indices that affect desertification processes were identified and analyzed using a geographic information system. The Mediterranean desertification and land use approach (MEDALUS), which has been widely used in the Mediterranean regions due to its simplicity, flexibility and rapid implementation strategy, was applied. 
-
-The Mediterranean desertification and land use (MEDALUS) approach identifies environmentally sensitive areas (ESAs) through the Environmentally Sensitive Area Index (ESAI). The ESAI is implemented by considering several variables, i.e. physical (soil quality), environmental (vegetation quality), climatic (climate quality), and social (management quality) indicators. This index can be used to obtain an in-depth understanding of the parameters causing desertification threats at a certain locations. This approach is simple, robust, widely applicable, acceptable to new indicators and parameters and can be adjusted to several scale levels. 
 
 ## Data
 These are the instructions for if you want to use your own data.
