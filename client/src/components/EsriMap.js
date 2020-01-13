@@ -414,7 +414,7 @@ const EsriMap = inject("DataStore")(
               <div id="viewDiv" style={mD}>
                 <div id="timeSlider"></div>
 
-                <input id="imageService" type="checkbox" />
+                
                 <div
                   id="refreshDiv"
                   style={{
