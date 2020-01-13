@@ -7,6 +7,7 @@ import { Provider } from 'mobx-react'
 import DataStore from './store/DataStore'
 import Hero from './components/Hero';
 import Desert from './components/Desertification'
+import Videos from './components/Videos';
 
 const App = () => {
   return (
@@ -14,12 +15,12 @@ const App = () => {
       <NavBar />
       <EsriMap />
       <UserInputForm />
-      
+
       <Desert />
       <Hero />
       <About />
-      
-      
+      <Videos />
+
     </Provider>
   );
 }
