@@ -46,25 +46,41 @@ const EsriMap = inject("DataStore")(
               const codeOne = {
                 type: "simple-fill", //autocast as new SimpleFillSymbol()
                 color: [0, 100, 0, 1], //dark green
-                style: "solid"
+                style: "solid",
+                outline: {  // autocasts as new SimpleLineSymbol()
+                  color: "transparent",
+                  width: 0
+                }
               };
 
               const codeTwo = {
                 type: "simple-fill", //autocast as new SimpleFillSymbol()
                 color: [255, 204, 0, 1], //yellowish orange
-                style: "solid"
+                style: "solid",
+                outline: {  // autocasts as new SimpleLineSymbol()
+                  color: "transparent",
+                  width: 0
+                }
               };
 
               const codeThree = {
                 type: "simple-fill", //autocast as new SimpleFillSymbol()
                 color: [255, 0, 0, 1], //red
-                style: "solid"
+                style: "solid",
+                outline: {  // autocasts as new SimpleLineSymbol()
+                  color: "transparent",
+                  width: 0
+                }
               };
 
               const codeFour = {
                 type: "simple-fill", //autocast as new SimpleFillSymbol()
                 color: [128,128,128 ,1], //gray
-                style: "solid"
+                style: "solid",
+                outline: {  // autocasts as new SimpleLineSymbol()
+                  color: "transparent",
+                  width: 0
+                }
               };
 
               var renderer = {
