@@ -405,9 +405,6 @@ const EsriMap = inject("DataStore")(
           <Row id="map">
             <Col md={12}>
               <div id="viewDiv" style={mD}>
-                <div id="timeSlider"></div>
-
-                
                 <div
                   id="refreshDiv"
                   style={{
