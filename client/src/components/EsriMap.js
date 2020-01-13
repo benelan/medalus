@@ -382,7 +382,7 @@ const EsriMap = inject("DataStore")(
       render() {
         const mD = {
           width: "100%",
-          height: "600px"
+          height: "650px"
         };
 
         let filterVisibility =
