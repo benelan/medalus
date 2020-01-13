@@ -28,273 +28,284 @@ const EsriMap = inject("DataStore")(
           "esri/layers/ImageryLayer",
           "esri/core/watchUtils"
         ])
-          .then(([Map, MapView, GeoJSONLayer, TimeSlider, ImageryLayer, watchUtils]) => {
-            let geojsonLayerView;
-            let handle;
+          .then(
+            ([
+              Map,
+              MapView,
+              GeoJSONLayer,
+              TimeSlider,
+              ImageryLayer,
+              watchUtils
+            ]) => {
+              let geojsonLayerView;
+              let handle;
 
-            //symbology for rendering unique values based on Grid Codes
+              //symbology for rendering unique values based on Grid Codes
 
-            //symbol for Grid Code 1
-            const codeOne = {
-              type: "simple-fill", //autocast as new SimpleFillSymbol()
-              color: [255, 255, 0, 1], //yellow
-              style: "solid"
-            };
+              //symbol for Grid Code 1
+              const codeOne = {
+                type: "simple-fill", //autocast as new SimpleFillSymbol()
+                color: [0, 100, 0, 1], //dark green
+                style: "solid"
+              };
 
-            const codeTwo = {
-              type: "simple-fill", //autocast as new SimpleFillSymbol()
-              color: [0, 255, 0, 1], //green
-              style: "solid"
-            };
+              const codeTwo = {
+                type: "simple-fill", //autocast as new SimpleFillSymbol()
+                color: [55, 165, 0, 1], //yellowish orange
+                style: "solid"
+              };
 
-            const codeThree = {
-              type: "simple-fill", //autocast as new SimpleFillSymbol()
-              color: [255, 0, 0, 1], //red
-              style: "solid"
-            };
+              const codeThree = {
+                type: "simple-fill", //autocast as new SimpleFillSymbol()
+                color: [255, 0, 0, 1], //red
+                style: "solid"
+              };
 
-            const codeFour = {
-              type: "simple-fill", //autocast as new SimpleFillSymbol()
-              color: [0, 0, 255, 1], //blue
-              style: "solid"
-            };
+              const codeFour = {
+                type: "simple-fill", //autocast as new SimpleFillSymbol()
+                color: [128,128,128 ,1], //gray
+                style: "solid"
+              };
 
-            var renderer = {
-              type: "unique-value", //autocasts as new UniqueValueRenderer
-              field: "gridcode",
-              uniqueValueInfos: [
-                {
-                  value: "1", // grid code value "4"
-                  symbol: codeOne // will be assigned codeOne
+              var renderer = {
+                type: "unique-value", //autocasts as new UniqueValueRenderer
+                field: "gridcode",
+                uniqueValueInfos: [
+                  {
+                    value: "1", // grid code value "4"
+                    symbol: codeOne // will be assigned codeOne
+                  },
+                  {
+                    value: "2", // grid code value "4"
+                    symbol: codeTwo // will be assigned codeTwo
+                  },
+                  {
+                    value: "3", // grid code value "4"
+                    symbol: codeThree // will be assigned codeThree
+                  },
+                  {
+                    value: "4", // grid code value "4"
+                    symbol: codeFour // will be assigned codeFour
+                  }
+                ]
+              };
+
+              //const url = "http://belan2.esri.com:8080/almeda.geojson";
+              //const url="https://jbanuelos.esri.com/hackathon/almeda_2011.geojson";
+              // const url =
+              //   "https://bsvensson.github.io/various-tests/geojson/usgs-earthquakes-06182019.geojson";
+              // const url =
+              //   "https://kghime.esri.com/geojsonHack/SanDiego_2011.geojson";
+              // const url = "https://kghime.esri.com/geojsonHack/output.geojson";
+              const url = "http://belan2.esri.com:8080/yuba.geojson";
+
+              console.log(url);
+              const template = {
+                title: "{OBJECTID}",
+                content:
+                  "Shape length of county is {Shape_Length} and shape area is {Shape_Area}"
+              };
+
+              const geoJSONLayer = new GeoJSONLayer({
+                url: url,
+                popupTemplate: template,
+                renderer: renderer,
+                timeInfo: {
+                  startField: "Year" //name of the date field
                 },
-                {
-                  value: "2", // grid code value "4"
-                  symbol: codeTwo // will be assigned codeTwo
-                },
-                {
-                  value: "3", // grid code value "4"
-                  symbol: codeThree // will be assigned codeThree
-                },
-                {
-                  value: "4", // grid code value "4"
-                  symbol: codeFour // will be assigned codeFour
-                }
-              ]
-            };
-
-            //const url = "http://belan2.esri.com:8080/almeda.geojson";
-            //const url="https://jbanuelos.esri.com/hackathon/almeda_2011.geojson";
-            // const url =
-            //   "https://bsvensson.github.io/various-tests/geojson/usgs-earthquakes-06182019.geojson";
-            // const url =
-            //   "https://kghime.esri.com/geojsonHack/SanDiego_2011.geojson";
-           // const url = "https://kghime.esri.com/geojsonHack/output.geojson";
-            const url = "http://belan2.esri.com:8080/yuba.geojson";
-
-            console.log(url);
-            const template = {
-              title: "{OBJECTID}",
-              content:
-                "Shape length of county is {Shape_Length} and shape area is {Shape_Area}"
-            };
-
-            const geoJSONLayer = new GeoJSONLayer({
-              url: url,
-              popupTemplate: template,
-              renderer: renderer,
-              timeInfo: {
-                startField: "Year" //name of the date field
-              },
-              interval: {
-                unit: "years",
-                value: 1
-              }
-            });
-
-            const map = new Map({
-              basemap: "dark-gray",
-              layers: [geoJSONLayer]
-            });
-
-            const view = new MapView({
-              container: "viewDiv",
-              center: [-121.6169, 39.1404],
-              zoom: 10,
-              map: map
-            });
-
-            //Time Slider widget
-            var timeSlider = new TimeSlider({
-              container: "timeSlider",
-              //view: view,
-              //mode: "cumulative-from-start",
-              playRate: 100,
-              stops: {
                 interval: {
-                  value: 1,
-                  unit: "months"
+                  unit: "years",
+                  value: 1
                 }
-              }
-            });
-            view.ui.add(timeSlider, "manual");
+              });
 
-            //var featureCount = document.getElementById("feature-count");
-            //var county = document.getElementById("county");
-            //var selectCountyTitle = document.getElementById("select-county-title");
-            const refreshBtn = document.getElementById("refreshDiv");
-            const resetBtn = document.getElementById("resetBtn");
+              const map = new Map({
+                basemap: "dark-gray",
+                layers: [geoJSONLayer]
+              });
 
-            view.ui.add(refreshBtn, "manual");
-            view.ui.add(resetBtn, "bottom-right");
+              const view = new MapView({
+                container: "viewDiv",
+                center: [-121.6169, 39.1404],
+                zoom: 10,
+                map: map
+              });
 
-            //view.ui.add(featureCount, "top-right");
-            //view.ui.add(selectCountyTitle, "top-right");
-            //view.ui.add(county, "top-right");
+              //Time Slider widget
+              var timeSlider = new TimeSlider({
+                container: "timeSlider",
+                //view: view,
+                //mode: "cumulative-from-start",
+                playRate: 100,
+                stops: {
+                  interval: {
+                    value: 1,
+                    unit: "months"
+                  }
+                }
+              });
+              view.ui.add(timeSlider, "manual");
 
-            refreshBtn.onclick = function() {
-              const inputGeometry = that.props.DataStore.inputGeometry;
-              const where = that.props.DataStore.where;
+              //var featureCount = document.getElementById("feature-count");
+              //var county = document.getElementById("county");
+              //var selectCountyTitle = document.getElementById("select-county-title");
+              const refreshBtn = document.getElementById("refreshDiv");
+              const resetBtn = document.getElementById("resetBtn");
 
-              if (Object.keys(inputGeometry).length !== 0) {
-                const extent = JSON.parse(that.props.DataStore.inputGeometry);
-                const polygon = {
-                  type: "polygon",
-                  rings: [
-                    [extent.xmin, extent.ymin],
-                    [extent.xmin, extent.ymax],
-                    [extent.xmax, extent.ymax],
-                    [extent.xmax, extent.ymin],
-                    [extent.xmin, extent.ymin]
-                  ]
-                };
-                geojsonLayerView.filter = {
-                  geometry: polygon,
-                  spatialRelationship: "intersects",
-                  where: where
-                };
-              } else {
-                geojsonLayerView.filter = {
-                  where: where
-                };
-              }
-            };
+              view.ui.add(refreshBtn, "manual");
+              view.ui.add(resetBtn, "bottom-right");
 
-            resetBtn.onclick = function() {
-              geojsonLayerView.filter = { where: "1=1" };
-            };
+              //view.ui.add(featureCount, "top-right");
+              //view.ui.add(selectCountyTitle, "top-right");
+              //view.ui.add(county, "top-right");
 
-            // function displayImageService() {
-            //   if (document.getElementById("imageService").checked) {
-            //     map.add();
-            //   } else {
-            //     map.remove();
-            //   }
-            // }
+              refreshBtn.onclick = function() {
+                const inputGeometry = that.props.DataStore.inputGeometry;
+                const where = that.props.DataStore.where;
 
-            const imgServiceLayer = new ImageryLayer({
+                if (Object.keys(inputGeometry).length !== 0) {
+                  const extent = JSON.parse(that.props.DataStore.inputGeometry);
+                  const polygon = {
+                    type: "polygon",
+                    rings: [
+                      [extent.xmin, extent.ymin],
+                      [extent.xmin, extent.ymax],
+                      [extent.xmax, extent.ymax],
+                      [extent.xmax, extent.ymin],
+                      [extent.xmin, extent.ymin]
+                    ]
+                  };
+                  geojsonLayerView.filter = {
+                    geometry: polygon,
+                    spatialRelationship: "intersects",
+                    where: where
+                  };
+                } else {
+                  geojsonLayerView.filter = {
+                    where: where
+                  };
+                }
+              };
+
+              resetBtn.onclick = function() {
+                geojsonLayerView.filter = { where: "1=1" };
+              };
+
+              // function displayImageService() {
+              //   if (document.getElementById("imageService").checked) {
+              //     map.add();
+              //   } else {
+              //     map.remove();
+              //   }
+              // }
+
+              const imgServiceLayer = new ImageryLayer({
                 url:
-                  "https://sampleserver6.arcgisonline.com/arcgis/rest/services/NLCDLandCover2001/ImageServer",
+                  "https://jaiswal.esri.com/server/rest/services/Hackathon/Desertificate2010/ImageServer",
                 format: "jpgpng" // server exports in either jpg or png format
               });
-            
-            const imgServiceChkBox = document.getElementById("imageService");
-            view.ui.add(imgServiceChkBox, "top-right");
-            imgServiceChkBox.onchange = function() {
-              if (imgServiceChkBox.checked) {
-                map.add(imgServiceLayer);
-              } else {
-                map.remove(imgServiceLayer);
-              }
-            };
 
-            view.when(() => {
-              view
-                .whenLayerView(geoJSONLayer)
-                .then(layerView => {
-                  geojsonLayerView = layerView;
-                  handle = watchUtils.watch(
-                    geojsonLayerView,
-                    "updating",
-                    () => {
-                      console.log("finished loading the layer!");
-                      that.props.DataStore.setLoaded(
-                        that.props.DataStore.loaded
-                      );
-                      //const start = geoJSONLayer.timeInfo.fullTimeExtent.start;
-                    }
-                  );
-
-                  //const start = new Date(2019, 4, 25);
-                  const start = geoJSONLayer.timeInfo.fullTimeExtent.start;
-                  //   console.log(start);
-                  //   const end = geoJSONLayer.timeInfo.fullTimeExtent.end;
-                  //   console.log(end);
-                  timeSlider.fullTimeExtent = {
-                    start: start,
-                    end: geoJSONLayer.timeInfo.fullTimeExtent.end
-                  };
-
-                  const end = new Date(start);
-                  end.setDate(end.getDate() + 1);
-                  //   const end = geoJSONLayer.timeInfo.fullTimeExtent.end;
-                  //   console.log(start);
-                  //   console.log(end);
-                  timeSlider.values = [start, end];
-                })
-                .catch(err => console.log("failed in layerview ", err));
-            });
-
-            timeSlider.watch("timeExtent", function() {
-              geoJSONLayer.definitionExpression =
-                "Year <= " + timeSlider.timeExtent.end.getTime();
-
-              geojsonLayerView.effect = {
-                filter: {
-                  timeExtent: timeSlider.timeExtent,
-                  geometry: view.extent
-                },
-                excludedEffect: "grayscale(20%) opacity(12%)"
+              const imgServiceChkBox = document.getElementById("imageService");
+              view.ui.add(imgServiceChkBox, "top-right");
+              imgServiceChkBox.onchange = function() {
+                if (imgServiceChkBox.checked) {
+                  map.add(imgServiceLayer);
+                } else {
+                  map.remove(imgServiceLayer);
+                }
               };
-            });
 
-            // timeSlider.watch("timeExtent", function(value){
-            //     // update layer view filter to reflect current timeExtent
-            //     geojsonLayerView.filter = {
-            //       timeExtent: value
-            //     };
-            //   });
+              view.when(() => {
+                view
+                  .whenLayerView(geoJSONLayer)
+                  .then(layerView => {
+                    geojsonLayerView = layerView;
+                    handle = watchUtils.watch(
+                      geojsonLayerView,
+                      "updating",
+                      () => {
+                        console.log("finished loading the layer!");
+                        that.props.DataStore.setLoaded(
+                          that.props.DataStore.loaded
+                        );
+                        //const start = geoJSONLayer.timeInfo.fullTimeExtent.start;
+                      }
+                    );
 
-            //Button click event on counting number of features
-            // featureCount.addEventListener("click", function() {
-            //   console.log("button clicked");
+                    //const start = new Date(2019, 4, 25);
+                    const start = geoJSONLayer.timeInfo.fullTimeExtent.start;
+                    //   console.log(start);
+                    //   const end = geoJSONLayer.timeInfo.fullTimeExtent.end;
+                    //   console.log(end);
+                    timeSlider.fullTimeExtent = {
+                      start: start,
+                      end: geoJSONLayer.timeInfo.fullTimeExtent.end
+                    };
 
-            //   view
-            //     .whenLayerView(geoJSONLayer)
-            //     .then(function(layerView) {
-            //       return layerView.queryFeatureCount();
-            //     })
-            //     .then(function(count) {
-            //       console.log(count); // prints the total number of client-side graphics to the console
-            //     });
-            // });
+                    const end = new Date(start);
+                   // end.setDate(end.getDate() + 1);
+                    end.setMonth(end.getMonth() + 1);
+                    //   const end = geoJSONLayer.timeInfo.fullTimeExtent.end;
+                    //   console.log(start);
+                    //   console.log(end);
+                    timeSlider.values = [start, end];
+                  })
+                  .catch(err => console.log("failed in layerview ", err));
+              });
 
-            //Dropdown selection event to select a county and map over it
-            // var highlight;
-            // county.addEventListener("change", function(event) {
-            //   console.log(event);
-            //   var highlight;
-            //   view.whenLayerView(geoJSONLayer).then(function(layerView) {
-            //     var query = geoJSONLayer.createQuery();
-            //     query.where = "OBJECTID = 872";
-            //     geoJSONLayer.queryFeatures(query).then(function(result) {
-            //       if (highlight) {
-            //         highlight.remove();
-            //       }
-            //       highlight = layerView.highlight(result.features);
-            //     });
-            //   });
-            // });
-          }) //end of module
+              timeSlider.watch("timeExtent", function() {
+                geoJSONLayer.definitionExpression =
+                  //"Year <= " + timeSlider.timeExtent.end.getTime();
+                  "Year <= " + timeSlider.timeExtent.end.getTime();
+
+                geojsonLayerView.effect = {
+                  filter: {
+                    timeExtent: timeSlider.timeExtent,
+                    geometry: view.extent
+                  },
+                  //excludedEffect: "grayscale(20%) opacity(12%)"
+                };
+              });
+
+              // timeSlider.watch("timeExtent", function(value){
+              //     // update layer view filter to reflect current timeExtent
+              //     geojsonLayerView.filter = {
+              //       timeExtent: value
+              //     };
+              //   });
+
+              //Button click event on counting number of features
+              // featureCount.addEventListener("click", function() {
+              //   console.log("button clicked");
+
+              //   view
+              //     .whenLayerView(geoJSONLayer)
+              //     .then(function(layerView) {
+              //       return layerView.queryFeatureCount();
+              //     })
+              //     .then(function(count) {
+              //       console.log(count); // prints the total number of client-side graphics to the console
+              //     });
+              // });
+
+              //Dropdown selection event to select a county and map over it
+              // var highlight;
+              // county.addEventListener("change", function(event) {
+              //   console.log(event);
+              //   var highlight;
+              //   view.whenLayerView(geoJSONLayer).then(function(layerView) {
+              //     var query = geoJSONLayer.createQuery();
+              //     query.where = "OBJECTID = 872";
+              //     geoJSONLayer.queryFeatures(query).then(function(result) {
+              //       if (highlight) {
+              //         highlight.remove();
+              //       }
+              //       highlight = layerView.highlight(result.features);
+              //     });
+              //   });
+              // });
+            }
+          ) //end of module
           .catch(err => {
             // handle any errors
             console.error(err);
