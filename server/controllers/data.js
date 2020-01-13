@@ -27,8 +27,11 @@ router.get('/api/getData', (req, res) => {
 
  spawn.on('exit', function(exit) {
     console.log('exited with code: ' + exit)
-    dm.mergeGeoJSON();
-    console.log("geojsons merged");
+    if (exit == 0) { // only merge if arcy script was successful
+      dm.mergeGeoJSON();
+      console.log("geojsons merged");
+    }
+   
     res.json({"exitcode": exit})
   })
 
