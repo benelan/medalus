@@ -123,9 +123,8 @@ const EsriMap = inject("DataStore")(
 
               console.log(url);
               const template = {
-                title: "{OBJECTID}",
-                content:
-                  "Shape length of county is {Shape_Length} and shape area is {Shape_Area}"
+                title: "{Name}",
+                content: `<p>The county of <b>{Name}</b> has a classification of <b>{gridcode}</b> in this region</p>`
               };
 
               const geoJSONLayer = new GeoJSONLayer({
@@ -245,7 +244,7 @@ const EsriMap = inject("DataStore")(
                       geojsonLayerView,
                       "updating",
                       () => {
-                        console.log("finished loading the layer!");
+                        //console.log("finished loading the layer!");
                         that.props.DataStore.setLoaded(
                           that.props.DataStore.loaded
                         );
@@ -337,9 +336,9 @@ const EsriMap = inject("DataStore")(
           this.props.DataStore.inputGeometry.length > 0
             ? { visibility: "visible" }
             : { visibility: "hidden" };
-        this.props.DataStore.inputGeometry.length > 0
-          ? console.log("extent", this.props.DataStore.inputGeometry)
-          : console.log("no extent");
+        // this.props.DataStore.inputGeometry.length > 0
+        //   ? console.log("extent", this.props.DataStore.inputGeometry)
+        //   : console.log("no extent");
 
         let refreshVisibility = this.props.DataStore.clicked
           ? { visibility: "visible" }

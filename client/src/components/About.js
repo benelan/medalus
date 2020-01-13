@@ -39,7 +39,7 @@ class About extends Component {
                         <p>Commodo viverra maecenas accumsan lacus vel facilisis volutpat. Id cursus metus aliquam eleifend mi in nulla posuere sollicitudin. Venenatis lectus magna fringilla urna porttitor rhoncus dolor purus non. Lorem ipsum dolor sit amet consectetur adipiscing. Aliquet sagittis id consectetur purus ut. Quam vulputate dignissim suspendisse in est ante. Elementum nisi quis eleifend quam. Tempor id eu nisl nunc. Integer enim neque volutpat ac tincidunt vitae. Arcu felis bibendum ut tristique et. Dictum sit amet justo donec enim diam vulputate.</p>
                     </Col>  
                 </Row>
-                <img src={process.env.PUBLIC_URL + './div.PNG'} style={center} ></img>
+                <img src={process.env.PUBLIC_URL + './div.PNG'} alt="divider" style={center} ></img>
                 <Row>
                     <Col md={6}>
                         <h4 className="text-center">VQI</h4>
@@ -51,7 +51,7 @@ class About extends Component {
                     <img src={process.env.PUBLIC_URL + './VQI.PNG'} alt="VQI" className="float-right"></img>
                     </Col>
                 </Row>
-                <img src={process.env.PUBLIC_URL + './div.PNG'} style={center} ></img>
+                <img src={process.env.PUBLIC_URL + './div.PNG'} alt="divider" style={center} ></img>
                 <Row>
                     <Col md={6}>
                         <img src={process.env.PUBLIC_URL + './CQI.PNG'} alt="CQI"></img>
@@ -62,7 +62,7 @@ class About extends Component {
                         <p>Commodo viverra maecenas accumsan lacus vel facilisis volutpat. Id cursus metus aliquam eleifend mi in nulla posuere sollicitudin. Venenatis lectus magna fringilla urna porttitor rhoncus dolor purus non. Lorem ipsum dolor sit amet consectetur adipiscing. Aliquet sagittis id consectetur purus ut. Quam vulputate dignissim suspendisse in est ante. Elementum nisi quis eleifend quam. Tempor id eu nisl nunc. Integer enim neque volutpat ac tincidunt vitae. Arcu felis bibendum ut tristique et. Dictum sit amet justo donec enim diam vulputate.</p>
                     </Col>
                 </Row>
-                <img src={process.env.PUBLIC_URL + './div.PNG'} style={center} ></img>
+                <img src={process.env.PUBLIC_URL + './div.PNG'} alt="divider" style={center} ></img>
                 <Row>
                     <Col md={6}>
                         <h4 className="text-center">MQI</h4>
@@ -73,7 +73,7 @@ class About extends Component {
                     <img src={process.env.PUBLIC_URL + './MQI.PNG'} alt="MQI" className="float-right"></img>  
                     </Col>
                 </Row>
-                <img src={process.env.PUBLIC_URL + './div.PNG'} style={center} ></img>
+                <img src={process.env.PUBLIC_URL + './div.PNG'} alt="divider" style={center} ></img>
                 <Row>
                     <Col md={6}>
                         <img src={process.env.PUBLIC_URL + './Desertificate2018.PNG'} alt="Desertificate2018"></img>
@@ -84,7 +84,7 @@ class About extends Component {
                         <p>Commodo viverra maecenas accumsan lacus vel facilisis volutpat. Id cursus metus aliquam eleifend mi in nulla posuere sollicitudin. Venenatis lectus magna fringilla urna porttitor rhoncus dolor purus non. Lorem ipsum dolor sit amet consectetur adipiscing. Aliquet sagittis id consectetur purus ut. Quam vulputate dignissim suspendisse in est ante. Elementum nisi quis eleifend quam. Tempor id eu nisl nunc. Integer enim neque volutpat ac tincidunt vitae. Arcu felis bibendum ut tristique et. Dictum sit amet justo donec enim diam vulputate.</p>
                     </Col>
                 </Row>
-                <img src={process.env.PUBLIC_URL + './div.PNG'} style={center} ></img>
+                <img src={process.env.PUBLIC_URL + './div.PNG'} alt="divider" style={center} ></img>
                 <Row style={homeStyle}>
                     <Col md={5}>
                         <h4 className="text-center" style={{ paddingTop: '20px' }}>Setting up the Data</h4>

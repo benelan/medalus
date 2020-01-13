@@ -1,8 +1,8 @@
 import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import * as Yup from 'yup';
+//import * as Yup from 'yup';
 import './UserInputForm.css';
-import styled from 'styled-components';
+//import styled from 'styled-components';
 import { observer, inject } from 'mobx-react'
 import { Col, Row } from "reactstrap";
 import axios from 'axios';
@@ -65,7 +65,10 @@ const UserInputForm = inject("DataStore")(observer(
                                     this.props.DataStore.setClicked(this.props.DataStore.clicked);
                                     //query our api for the python script
                                     console.log(countyName);
-                                    this.queryAPI(values.county);
+                                    if (!!countyName) {
+                                        this.queryAPI(countyName);
+                                    }
+                                    
                                     console.log(JSON.stringify(values, null, 2));
                                     setSubmitting(false);
                                 }, 400);
@@ -100,8 +103,8 @@ const UserInputForm = inject("DataStore")(observer(
         }
     }))
 
-const redErrorMessage = styled.p`
-    color: #D12B27
-`;
+// const redErrorMessage = styled.p`
+//     color: #D12B27
+// `;
 
 export default UserInputForm;
