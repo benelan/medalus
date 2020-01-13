@@ -16,7 +16,7 @@ class Videos extends Component {
 
         return (
             <React.Fragment>
-                <Row style={homeStyle}>
+                <Row style={homeStyle} id="data">
                     <Col md={6}>
                         <h3>Reclassification of Individual Data</h3>
                         <p>This video shows how to reclassify data. We use precipitation data as a demonstration.</p>
