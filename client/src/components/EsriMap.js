@@ -26,6 +26,7 @@ const EsriMap = inject("DataStore")(
           "esri/layers/GeoJSONLayer",
           "esri/widgets/TimeSlider",
           "esri/layers/ImageryLayer",
+          "esri/layers/MapImageLayer",
           "esri/core/watchUtils"
         ])
           .then(
@@ -35,6 +36,7 @@ const EsriMap = inject("DataStore")(
               GeoJSONLayer,
               TimeSlider,
               ImageryLayer,
+              MapImageLayer,
               watchUtils
             ]) => {
               let geojsonLayerView;
@@ -47,7 +49,8 @@ const EsriMap = inject("DataStore")(
                 type: "simple-fill", //autocast as new SimpleFillSymbol()
                 color: [0, 100, 0, 1], //dark green
                 style: "solid",
-                outline: {  // autocasts as new SimpleLineSymbol()
+                outline: {
+                  // autocasts as new SimpleLineSymbol()
                   color: "transparent",
                   width: 0
                 }
@@ -57,7 +60,8 @@ const EsriMap = inject("DataStore")(
                 type: "simple-fill", //autocast as new SimpleFillSymbol()
                 color: [255, 204, 0, 1], //yellowish orange
                 style: "solid",
-                outline: {  // autocasts as new SimpleLineSymbol()
+                outline: {
+                  // autocasts as new SimpleLineSymbol()
                   color: "transparent",
                   width: 0
                 }
@@ -67,7 +71,8 @@ const EsriMap = inject("DataStore")(
                 type: "simple-fill", //autocast as new SimpleFillSymbol()
                 color: [255, 0, 0, 1], //red
                 style: "solid",
-                outline: {  // autocasts as new SimpleLineSymbol()
+                outline: {
+                  // autocasts as new SimpleLineSymbol()
                   color: "transparent",
                   width: 0
                 }
@@ -75,9 +80,10 @@ const EsriMap = inject("DataStore")(
 
               const codeFour = {
                 type: "simple-fill", //autocast as new SimpleFillSymbol()
-                color: [128,128,128 ,1], //gray
+                color: [128, 128, 128, 1], //gray
                 style: "solid",
-                outline: {  // autocasts as new SimpleLineSymbol()
+                outline: {
+                  // autocasts as new SimpleLineSymbol()
                   color: "transparent",
                   width: 0
                 }
@@ -215,10 +221,9 @@ const EsriMap = inject("DataStore")(
               //   }
               // }
 
-              const imgServiceLayer = new ImageryLayer({
+              const imgServiceLayer = new MapImageLayer({
                 url:
-                  "https://jaiswal.esri.com/server/rest/services/Hackathon/Desertificate2010/ImageServer",
-                format: "jpgpng" // server exports in either jpg or png format
+                  "https://jaiswal.esri.com/server/rest/services/Hackathon/Desertification2010/MapServer"
               });
 
               const imgServiceChkBox = document.getElementById("imageService");
@@ -246,7 +251,7 @@ const EsriMap = inject("DataStore")(
                         );
                       }
                     );
-                    
+
                     view.extent = geoJSONLayer.fullExtent; // zoom to extent
                     //const start = new Date(2019, 4, 25);
                     const start = geoJSONLayer.timeInfo.fullTimeExtent.start;
@@ -271,7 +276,7 @@ const EsriMap = inject("DataStore")(
                   filter: {
                     timeExtent: timeSlider.timeExtent,
                     geometry: view.extent
-                  },
+                  }
                   //excludedEffect: "grayscale(20%) opacity(12%)"
                 };
               });

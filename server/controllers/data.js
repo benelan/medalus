@@ -15,6 +15,7 @@ router.get('/api/mergeData', (req, res) => {
 router.get('/api/getData', (req, res) => {
   // Amador
   // Yuba
+  console.log("clipping for", req.query.county, "county")
   var spawn = cp.spawn('python', [appDir + "\\models\\python\\clip.py",
   req.query.county],
   {
@@ -24,11 +25,11 @@ router.get('/api/getData', (req, res) => {
     encoding: 'utf-8'
 });
 
- spawn.on('exit', function(exit, s) {
+ spawn.on('exit', function(exit) {
     console.log('exited with code: ' + exit)
     dm.mergeGeoJSON();
     console.log("geojsons merged");
-    res.json({"success": exit, "signal": s})
+    res.json({"exitcode": exit})
   })
 
   // for sync testing
