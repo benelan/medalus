@@ -15,12 +15,10 @@ const App = () => {
       <NavBar />
       <EsriMap />
       <UserInputForm />
-
       <Desert />
       <Hero />
       <About />
       <Videos />
-
     </Provider>
   );
 }

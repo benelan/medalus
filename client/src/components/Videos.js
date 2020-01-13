@@ -27,12 +27,11 @@ class Videos extends Component {
                         </div>
                     </Col>
                 </Row>
-                <img src={process.env.PUBLIC_URL + './div.PNG'} style={center}></img>
+                <img src={process.env.PUBLIC_URL + './div.PNG'} style={center} alt="__________"></img>
                 <Row style={homeStyle}>
                     <Col md={6}>
                         <div className="embed-responsive embed-responsive-16by9">
-                            <iframe className="embeddedObject shadow resizable embed-responsive-item" title="video2" scrolling="no" frameborder="0" type="text/html"
-                                style={{ overflow: "hidden" }} src="https://www.screencast.com/users/Biraja/folders/Snagit/media/62505fad-7af8-436d-a6e4-17e4d2d39157/embed" width="600px" height="400px" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                            <iframe className="embeddedObject shadow resizable embed-responsive-item" title="video2" style={{ overflow: "hidden" }} src="https://www.screencast.com/users/Biraja/folders/Snagit/media/62505fad-7af8-436d-a6e4-17e4d2d39157/embed" width="600px" height="400px" allowFullScreen></iframe>
                         </div>
                     </Col>
                     <Col md={6}>
@@ -40,7 +39,7 @@ class Videos extends Component {
                         <p>This video shows the steps to create the sub indexes: SOI, VQI, MQI and CQI. We use SQI data as a demonstration.</p>
                     </Col>
                 </Row>
-                <img src={process.env.PUBLIC_URL + './div.PNG'} style={center}></img>
+                <img src={process.env.PUBLIC_URL + './div.PNG'} style={center} alt="__________"></img>
                 <Row style={homeStyle}>
                     <Col md={6}>
                         <h3>Steps to Create Environmentally Sensitive Area Index</h3>
