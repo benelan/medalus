@@ -33,6 +33,8 @@ const UserInputForm = inject("DataStore")(observer(
             fetch(url)
                 .then(response => response.json())
                 .then((result) => {
+                    alert("GeoJSON layer has been created successfully!");
+                    this.props.DataStore.setReloadMap(true);
                     console.log('result: ', result)
                 })
                 .catch(err => console.log('failed to fetch: ', err));
@@ -59,15 +61,16 @@ const UserInputForm = inject("DataStore")(observer(
                             onSubmit={(values, { setSubmitting }) => {
                                 setTimeout(() => {
                                     const countyName = values.county.length > 0 ? values.county.replace(/\s/g, '') : values.county;
+                                    if (!!countyName && this.props.DataStore.county !== countyName) {
+                                        this.queryAPI(countyName);
+                                    }
                                     this.props.DataStore.setWhere(values.where);
                                     this.props.DataStore.setCounty(countyName);
                                     this.props.DataStore.setInputGeometry(values.extent);
                                     this.props.DataStore.setClicked(this.props.DataStore.clicked);
                                     //query our api for the python script
                                     console.log(countyName);
-                                    if (!!countyName) {
-                                        this.queryAPI(countyName);
-                                    }
+                                    
                                     
                                     console.log(JSON.stringify(values, null, 2));
                                     setSubmitting(false);

@@ -14,6 +14,11 @@ const EsriMap = inject("DataStore")(
 
       onClickHandler = () => {
         this.props.DataStore.setClicked(this.props.DataStore.clicked);
+        //reload the map is necessary
+        if(this.props.DataStore.reloadMap){
+          this.props.DataStore.setReloadMap(false);
+          this.loadMap();
+        }
       };
 
       loadMap() {
@@ -119,7 +124,7 @@ const EsriMap = inject("DataStore")(
               // const url =
               //   "https://kghime.esri.com/geojsonHack/SanDiego_2011.geojson";
               // const url = "https://kghime.esri.com/geojsonHack/output.geojson";
-              const url = "http://belan2.esri.com:8080/yuba.geojson";
+              const url = "http://belan2.esri.com:8080/output.geojson";
 
               console.log(url);
               const template = {
