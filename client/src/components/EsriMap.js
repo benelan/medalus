@@ -9,7 +9,7 @@ const EsriMap = inject("DataStore")(
   observer(
     class EsriMap extends Component {
 
-      state = {
+      state = { // prevent memory leak on map reload
         map: null,
         view: null,
         geoJSONLayer: null,
@@ -43,7 +43,6 @@ const EsriMap = inject("DataStore")(
           "esri/views/MapView",
           "esri/layers/GeoJSONLayer",
           "esri/widgets/TimeSlider",
-          "esri/layers/ImageryLayer",
           "esri/layers/MapImageLayer",
           "esri/widgets/LayerList",
           "esri/widgets/Expand",
@@ -55,7 +54,6 @@ const EsriMap = inject("DataStore")(
               MapView,
               GeoJSONLayer,
               TimeSlider,
-              ImageryLayer,
               MapImageLayer,
               LayerList,
               Expand,

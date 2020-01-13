@@ -15,7 +15,7 @@ class About extends Component {
         }
 
         return (
-            <Row style={homeStyle} id="about">
+            <Row style={homeStyle} id="medalus">
                 <Col md={12}>
                     <h4 className="text-center">Medalus</h4>
                     <h5 className="text-center"><i>Mediterranean Desertification and Land Use</i></h5>
