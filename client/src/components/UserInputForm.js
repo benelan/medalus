@@ -33,7 +33,7 @@ const UserInputForm = inject("DataStore")(observer(
             fetch(url)
                 .then(response => response.json())
                 .then((result) => {
-                    console.log(result)
+                    console.log('result: ', result)
                 })
                 .catch(err => console.log('failed to fetch: ', err));
         }
