@@ -14,6 +14,8 @@ The Mediterranean desertification and land use (MEDALUS) approach identifies env
 We followed the below model to collect required data to determine environmentally sensitive areas. 
 We have considered California as our study area and collected raster sample data accordingly. 
 
+![Medalus Method](https://github.com/benelan/medalus/blob/master/client/public/MEDALUS.jpeg)
+
 Data for soil Depth, Albedo, Texture, drainage and Slope are collected from the webmap https://ess.maps.arcgis.com/home/webmap/viewer.html?webmap=27135181707846b5b405ee615d5a66d1 
 
 Data for climate and precipitation for year 2010 to 2018 collected as Ascii format from http://www.prism.oregonstate.edu/recent/  
@@ -34,7 +36,7 @@ Example of python command for raster clip is as follows:
 
 Again, using ArcGIS Pro, reclassify individual data to the predetermine classes as per the California area using geoprocessing tool “Reclassify”. Please change the classification parameter and file geodatabase name as per your data and then follow the below steps: 
 
-Classification reference tables is here.  Most of the classification ranges are derived from classification method called “Quantile” from ArcGIS pro symbology. All layers from Climate, Livestock and slope, Texture, Depth from Soil are classified using Quantile methods. 
+Classification reference tables is [here](https://github.com/benelan/medalus/blob/master/client/public/Desertfication_Index_tables.xlsx).  Most of the classification ranges are derived from classification method called “Quantile” from ArcGIS pro symbology. All layers from Climate, Livestock and slope, Texture, Depth from Soil are classified using Quantile methods. 
 
 **Data Classification**
 Soil data reclassification using the below python command: 
