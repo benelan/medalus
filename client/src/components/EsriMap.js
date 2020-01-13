@@ -130,14 +130,7 @@ const EsriMap = inject("DataStore")(
                 ]
               };
 
-              //const url = "http://belan2.esri.com:8080/almeda.geojson";
-              //const url="https://jbanuelos.esri.com/hackathon/almeda_2011.geojson";
-              // const url =
-              //   "https://bsvensson.github.io/various-tests/geojson/usgs-earthquakes-06182019.geojson";
-              // const url =
-              //   "https://kghime.esri.com/geojsonHack/SanDiego_2011.geojson";
-              // const url = "https://kghime.esri.com/geojsonHack/output.geojson";
-              const url = "http://belan2.esri.com:8080/output.geojson";
+              const url = "https://belan2.esri.com:8443/output.geojson";
 
               const template = {
                 title: "{Name}",

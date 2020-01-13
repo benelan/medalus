@@ -22,7 +22,7 @@ const UserInputForm = inject("DataStore")(observer(
         }
 
         queryAPI = (dataObj) => {
-            let url = "http://belan2.esri.com:8080/api/getData?county=";
+            let url = "https://belan2.esri.com:8443/api/getData?county=";
 
             // var query = Object.keys(dataObj)
             //     .map(k => encodeURIComponent(k) + '=' + encodeURIComponent(dataObj[k]))

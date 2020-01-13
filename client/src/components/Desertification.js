@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 import { Col, Row } from "reactstrap";
-import LazyHero from 'react-lazy-hero';
 
 class About extends Component {
-
     render() {
         const homeStyle = {
             margin: "20px"
