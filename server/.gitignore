@@ -1,5 +1,6 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 /models/ClippedRasters.gdb
+/models/Desertification.gdb
 /models/GeoJSONS
 # dependencies
 /node_modules

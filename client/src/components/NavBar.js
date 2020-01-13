@@ -47,6 +47,28 @@ const NavBar = () => {
                                 style={{ cursor: 'pointer' }}
                             >About</Link>
                         </NavItem>
+                        <NavItem>
+                            <Link
+                                activeClass="active"
+                                to="medalus"
+                                spy={true}
+                                smooth={true}
+                                offset={0}
+                                duration={500}
+                                style={{ cursor: 'pointer' }}
+                            >MEDALUS Method</Link>
+                        </NavItem>
+                        <NavItem>
+                            <Link
+                                activeClass="active"
+                                to="data"
+                                spy={true}
+                                smooth={true}
+                                offset={0}
+                                duration={500}
+                                style={{ cursor: 'pointer' }}
+                            >Data Setup</Link>
+                        </NavItem>
                     </Nav>
                 </Collapse>
             </Navbar>

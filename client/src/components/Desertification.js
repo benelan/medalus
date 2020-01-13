@@ -20,7 +20,7 @@ class About extends Component {
                             </p>
 
                             <p>Affects 75% of the earth's land surface!</p>
-                        
+
                             <h5>Why is this important?</h5>
                             <p>An article published by the USDA (United States Department of Agriculture) in 2018 states that wildfires are a catalyst to desertification.</p>
 
@@ -34,7 +34,7 @@ class About extends Component {
                                 <li>Water supply disruption</li>
                                 <li>Air pollution</li>
                             </ul>
-                            
+
                         </Col>
 
                         <Col md={{ size: 5, offset: 2 }}>
@@ -55,16 +55,15 @@ class About extends Component {
                             <p><i>data provided by cnn.com</i></p>
                         </Col>
 
-                       
                     </Row>
-                    <a href="https://www.fire.ca.gov/incidents/2019/" target="_blank" rel="noopener noreferrer">
-                        <LazyHero opacity={0} imageSrc={process.env.PUBLIC_URL + './wildfires.png'}></LazyHero>
-                    </a>
-                    <p><i>-data provided by the California Department of Forestry and Fire Protection</i></p>
+                    <Row><Col md={12}>
+                        <a href="https://www.fire.ca.gov/incidents/2019/" width="100%" target="_blank" rel="noopener noreferrer">
+                            <img src={process.env.PUBLIC_URL + './wildfires.png'} width="100%" alt="__________"></img>
+                        </a>
+                        <p><i>-data provided by the California Department of Forestry and Fire Protection</i></p>
+                    </Col></Row>
                 </Col>
-                
             </Row>
-            
         );
     }
 }

@@ -9,7 +9,7 @@ const EsriMap = inject("DataStore")(
   observer(
     class EsriMap extends Component {
 
-      state = {
+      state = { // prevent memory leak on map reload
         map: null,
         view: null,
         geoJSONLayer: null,
@@ -43,7 +43,6 @@ const EsriMap = inject("DataStore")(
           "esri/views/MapView",
           "esri/layers/GeoJSONLayer",
           "esri/widgets/TimeSlider",
-          "esri/layers/ImageryLayer",
           "esri/layers/MapImageLayer",
           "esri/widgets/LayerList",
           "esri/widgets/Expand",
@@ -55,7 +54,6 @@ const EsriMap = inject("DataStore")(
               MapView,
               GeoJSONLayer,
               TimeSlider,
-              ImageryLayer,
               MapImageLayer,
               LayerList,
               Expand,
@@ -248,40 +246,49 @@ const EsriMap = inject("DataStore")(
 
               const imgServiceLayer = new MapImageLayer({
                 url:
-                  "https://jaiswal.esri.com/server/rest/services/Hackathon/Desertification2010/MapServer"
+                  "https://jaiswal.esri.com/server/rest/services/Hackathon/Desertification2010/MapServer",
+                  visible: false
               });
 
               const imgServiceLayer1 = new MapImageLayer({
                 url:
-                  "https://jaiswal.esri.com/server/rest/services/Hackathon/Desertification2011/MapServer"
+                  "https://jaiswal.esri.com/server/rest/services/Hackathon/Desertification2011/MapServer",
+                  visible: false
               });
               const imgServiceLayer2 = new MapImageLayer({
                 url:
-                  "https://jaiswal.esri.com/server/rest/services/Hackathon/Desertification2012/MapServer"
+                  "https://jaiswal.esri.com/server/rest/services/Hackathon/Desertification2012/MapServer",
+                  visible: false
               });
               const imgServiceLayer3 = new MapImageLayer({
                 url:
-                  "https://jaiswal.esri.com/server/rest/services/Hackathon/Desertification2013/MapServer"
+                  "https://jaiswal.esri.com/server/rest/services/Hackathon/Desertification2013/MapServer",
+                  visible: false
               });
               const imgServiceLayer4 = new MapImageLayer({
                 url:
-                  "https://jaiswal.esri.com/server/rest/services/Hackathon/Desertification2014/MapServer"
+                  "https://jaiswal.esri.com/server/rest/services/Hackathon/Desertification2014/MapServer",
+                  visible: false
               });
               const imgServiceLayer5 = new MapImageLayer({
                 url:
-                  "https://jaiswal.esri.com/server/rest/services/Hackathon/Desertification2015/MapServer"
+                  "https://jaiswal.esri.com/server/rest/services/Hackathon/Desertification2015/MapServer",
+                  visible: false
               });
               const imgServiceLayer6 = new MapImageLayer({
                 url:
-                  "https://jaiswal.esri.com/server/rest/services/Hackathon/Desertification2016/MapServer"
+                  "https://jaiswal.esri.com/server/rest/services/Hackathon/Desertification2016/MapServer",
+                  visible: false
               });
               const imgServiceLayer7 = new MapImageLayer({
                 url:
-                  "https://jaiswal.esri.com/server/rest/services/Hackathon/Desertification2017/MapServer"
+                  "https://jaiswal.esri.com/server/rest/services/Hackathon/Desertification2017/MapServer",
+                  visible: false
               });
               const imgServiceLayer8 = new MapImageLayer({
                 url:
-                  "https://jaiswal.esri.com/server/rest/services/Hackathon/Desertification2018/MapServer"
+                  "https://jaiswal.esri.com/server/rest/services/Hackathon/Desertification2018/MapServer",
+                  visible: false
               });
 
               that.state.map.addMany([
