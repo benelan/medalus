@@ -3,6 +3,7 @@ import { Col, Row, Spinner } from "reactstrap";
 import { loadModules } from "esri-loader";
 import { loadCss } from "esri-loader";
 import { observer, inject } from "mobx-react";
+import "./map.css";
 
 const EsriMap = inject("DataStore")(
   observer(
@@ -14,6 +15,11 @@ const EsriMap = inject("DataStore")(
 
       onClickHandler = () => {
         this.props.DataStore.setClicked(this.props.DataStore.clicked);
+        //reload the map is necessary
+        if (this.props.DataStore.reloadMap) {
+          this.props.DataStore.setReloadMap(false);
+          this.loadMap();
+        }
       };
 
       loadMap() {
@@ -27,6 +33,7 @@ const EsriMap = inject("DataStore")(
           "esri/widgets/TimeSlider",
           "esri/layers/ImageryLayer",
           "esri/layers/MapImageLayer",
+          "esri/widgets/LayerList",
           "esri/core/watchUtils"
         ])
           .then(
@@ -37,6 +44,7 @@ const EsriMap = inject("DataStore")(
               TimeSlider,
               ImageryLayer,
               MapImageLayer,
+              LayerList,
               watchUtils
             ]) => {
               let geojsonLayerView;
@@ -119,13 +127,12 @@ const EsriMap = inject("DataStore")(
               // const url =
               //   "https://kghime.esri.com/geojsonHack/SanDiego_2011.geojson";
               // const url = "https://kghime.esri.com/geojsonHack/output.geojson";
-              const url = "http://belan2.esri.com:8080/yuba.geojson";
+              const url = "http://belan2.esri.com:8080/output.geojson";
 
               console.log(url);
               const template = {
-                title: "{OBJECTID}",
-                content:
-                  "Shape length of county is {Shape_Length} and shape area is {Shape_Area}"
+                title: "{Name}",
+                content: `<p>The county of <b>{Name}</b> has a classification of <b>{gridcode}</b> in this region</p>`
               };
 
               const geoJSONLayer = new GeoJSONLayer({
@@ -226,15 +233,68 @@ const EsriMap = inject("DataStore")(
                   "https://jaiswal.esri.com/server/rest/services/Hackathon/Desertification2010/MapServer"
               });
 
-              const imgServiceChkBox = document.getElementById("imageService");
-              view.ui.add(imgServiceChkBox, "top-right");
-              imgServiceChkBox.onchange = function() {
-                if (imgServiceChkBox.checked) {
-                  map.add(imgServiceLayer);
-                } else {
-                  map.remove(imgServiceLayer);
-                }
-              };
+              const imgServiceLayer1 = new MapImageLayer({
+                url:
+                  "https://jaiswal.esri.com/server/rest/services/Hackathon/Desertification2011/MapServer"
+              });
+              const imgServiceLayer2 = new MapImageLayer({
+                url:
+                  "https://jaiswal.esri.com/server/rest/services/Hackathon/Desertification2012/MapServer"
+              });
+              const imgServiceLayer3 = new MapImageLayer({
+                url:
+                  "https://jaiswal.esri.com/server/rest/services/Hackathon/Desertification2013/MapServer"
+              });
+              const imgServiceLayer4 = new MapImageLayer({
+                url:
+                  "https://jaiswal.esri.com/server/rest/services/Hackathon/Desertification2014/MapServer"
+              });
+              const imgServiceLayer5 = new MapImageLayer({
+                url:
+                  "https://jaiswal.esri.com/server/rest/services/Hackathon/Desertification2015/MapServer"
+              });
+              const imgServiceLayer6 = new MapImageLayer({
+                url:
+                  "https://jaiswal.esri.com/server/rest/services/Hackathon/Desertification2016/MapServer"
+              });
+              const imgServiceLayer7 = new MapImageLayer({
+                url:
+                  "https://jaiswal.esri.com/server/rest/services/Hackathon/Desertification2017/MapServer"
+              });
+              const imgServiceLayer8 = new MapImageLayer({
+                url:
+                  "https://jaiswal.esri.com/server/rest/services/Hackathon/Desertification2018/MapServer"
+              });
+
+              map.addMany([
+                imgServiceLayer,
+                imgServiceLayer1,
+                imgServiceLayer2,
+                imgServiceLayer3,
+                imgServiceLayer4,
+                imgServiceLayer5,
+                imgServiceLayer6,
+                imgServiceLayer7,
+                imgServiceLayer8
+              ]);
+
+              var layerList = new LayerList({
+                view: view
+              });
+              // Adds widget below other elements in the top left corner of the view
+              view.ui.add(layerList, {
+                position: "top-right"
+              });
+
+              //const imgServiceChkBox = document.getElementById("imageService");
+              //view.ui.add(imgServiceChkBox, "top-right");
+              //   imgServiceChkBox.onchange = function() {
+              //     if (imgServiceChkBox.checked) {
+              //       map.add(imgServiceLayer);
+              //     } else {
+              //       map.remove(imgServiceLayer);
+              //     }
+              //   };
 
               view.when(() => {
                 view
@@ -245,7 +305,7 @@ const EsriMap = inject("DataStore")(
                       geojsonLayerView,
                       "updating",
                       () => {
-                        console.log("finished loading the layer!");
+                        //console.log("finished loading the layer!");
                         that.props.DataStore.setLoaded(
                           that.props.DataStore.loaded
                         );
@@ -337,9 +397,9 @@ const EsriMap = inject("DataStore")(
           this.props.DataStore.inputGeometry.length > 0
             ? { visibility: "visible" }
             : { visibility: "hidden" };
-        this.props.DataStore.inputGeometry.length > 0
-          ? console.log("extent", this.props.DataStore.inputGeometry)
-          : console.log("no extent");
+        // this.props.DataStore.inputGeometry.length > 0
+        //   ? console.log("extent", this.props.DataStore.inputGeometry)
+        //   : console.log("no extent");
 
         let refreshVisibility = this.props.DataStore.clicked
           ? { visibility: "visible" }
@@ -352,6 +412,9 @@ const EsriMap = inject("DataStore")(
           <Row id="map">
             <Col md={12}>
               <div id="viewDiv" style={mD}>
+                <div id="timeSlider"></div>
+
+                <input id="imageService" type="checkbox" />
                 <div
                   id="refreshDiv"
                   style={{
@@ -399,9 +462,6 @@ const EsriMap = inject("DataStore")(
               <option value="San Diego">San Diego</option>
               
             </select> */}
-                <div id="timeSlider"></div>
-
-                <input id="imageService" type="checkbox" />
               </div>
             </Col>
           </Row>

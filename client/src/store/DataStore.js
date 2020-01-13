@@ -9,6 +9,7 @@ class DataStore {
     clicked = false;
     loaded = false;
     options = [];
+    reloadMap = false;
 
 
     setCounty(x) {
@@ -35,6 +36,9 @@ class DataStore {
     setOptions(x) {
         this.options = x;
     }
+    setReloadMap(x) {
+        this.reloadMap = x;
+    }
 }
 
 
@@ -47,6 +51,7 @@ decorate(DataStore, {
     clicked: observable,
     loaded: observable,
     options: observable,
+    reloadMap: observable,
     setCounty: action,
     setWhere: action,
     setInputGeometry: action,
@@ -54,7 +59,8 @@ decorate(DataStore, {
     setReturGeometry: action,
     setClicked: action,
     setLoaded: action,
-    setOptions: action
+    setOptions: action,
+    setReloadMap: action
 })
 
 export default new DataStore()
